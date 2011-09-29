@@ -124,6 +124,7 @@
 		0258769B14314B9400F53A11 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				025876BF14314B9400F53A11 /* PhoneGap.framework */,
 				0258769C14314B9400F53A11 /* Foundation.framework */,
 				0258769E14314B9400F53A11 /* UIKit.framework */,
 				025876A014314B9400F53A11 /* CoreGraphics.framework */,
@@ -144,7 +145,6 @@
 		025876B614314B9400F53A11 /* HelloWorld */ = {
 			isa = PBXGroup;
 			children = (
-				025876BF14314B9400F53A11 /* PhoneGap.framework */,
 				025876C114314B9400F53A11 /* Resources */,
 				025876DA14314B9400F53A11 /* Classes */,
 				025876DE14314B9400F53A11 /* Plugins */,
