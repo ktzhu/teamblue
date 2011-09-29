@@ -1,0 +1,89 @@
+// !$*UTF8*$!
+{
+	0258768C14314B9400F53A11 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = FC7D0FFF1434B9530028D116 /* HelloWorld */;
+		activeTarget = 0258769714314B9400F53A11 /* HelloWorld */;
+		codeSenseManager = FC7D10421434B9700028D116 /* Code sense */;
+		executables = (
+			FC7D0FFF1434B9530028D116 /* HelloWorld */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					341,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 338999927;
+			PBXWorkspaceStateSaveDate = 338999927;
+		};
+		sourceControlManager = FC7D10411434B9700028D116 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	0258769714314B9400F53A11 /* HelloWorld */ = {
+		activeExec = 0;
+		executables = (
+			FC7D0FFF1434B9530028D116 /* HelloWorld */,
+		);
+	};
+	FC7D0FFF1434B9530028D116 /* HelloWorld */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = HelloWorld;
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+	};
+	FC7D10411434B9700028D116 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	FC7D10421434B9700028D116 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+}
