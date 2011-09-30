@@ -22,7 +22,6 @@
 	/** If you need to do any extra app-specific initialization, you can do it here
 	 *  -jm
 	 **/
-    asd
     return [super init];
 }
 
