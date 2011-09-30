@@ -31,8 +31,12 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 338999927;
-			PBXWorkspaceStateSaveDate = 338999927;
+			PBXPerProjectTemplateStateSaveDate = 339085306;
+			PBXWorkspaceStateSaveDate = 339085306;
+		};
+		perUserProjectItems = {
+			FCE337C914360801004F93AC /* PBXBookmark */ = FCE337C914360801004F93AC /* PBXBookmark */;
+			FCE337CA14360801004F93AC /* PBXTextBookmark */ = FCE337CA14360801004F93AC /* PBXTextBookmark */;
 		};
 		sourceControlManager = FC7D10411434B9700028D116 /* Source Control */;
 		userBuildSettings = {
@@ -85,5 +89,31 @@
 	FC7D10421434B9700028D116 /* Code sense */ = {
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
+	};
+	FCE337C5143607FA004F93AC /* index.html */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = text.html;
+		path = index.html;
+		sourceTree = "<group>";
+	};
+	FCE337C914360801004F93AC /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = FCE337C5143607FA004F93AC /* index.html */;
+	};
+	FCE337CA14360801004F93AC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FCE337CB14360801004F93AC /* index.html */;
+		name = "index.html: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 869;
+		vrLoc = 0;
+	};
+	FCE337CB14360801004F93AC /* index.html */ = {
+		isa = PBXFileReference;
+		name = index.html;
+		path = /Users/sobanion/classes/fall2011/agile/code/teamblue/www/index.html;
+		sourceTree = "<absolute>";
 	};
 }
