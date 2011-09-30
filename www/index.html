@@ -45,9 +45,43 @@
 	function onDeviceReady()
 	{
 		// do your thing!
-		navigator.notification.alert("PhoneGap is working")
+		navigator.notification.alert("PhoneGap "+ device.phonegap +" is working on "+ device.name)
+        
+        //Access Accelerometer
+        navigator.accelerometer.getCurrentAcceleration(onGetCurrentAccelerationSuccess, onGetCurrentAccelerationError);
+        
+        //Access Network Connection
+        checkConnection();
 	}
+        
+    /*Accelerometer callback*/
+    function onGetCurrentAccelerationSuccess(acceleration) {
+        alert('Acceleration X: ' + acceleration.x + '\n' +
+                'Acceleration Y: ' + acceleration.y + '\n' +
+                'Acceleration Z: ' + acceleration.z + '\n' +
+                'Timestamp: '      + acceleration.timestamp + '\n');
+    };
+        
+    function onGetCurrentAccelerationError() {
+        alert('onError!');
+    };
     
+    /*check internet connection*/
+    function checkConnection() {
+        var networkState = navigator.network.connection.type;
+        
+        var states = {};
+        states[Connection.UNKNOWN]  = 'Unknown connection';
+        states[Connection.ETHERNET] = 'Ethernet connection';
+        states[Connection.WIFI]     = 'WiFi connection';
+        states[Connection.CELL_2G]  = 'Cell 2G connection';
+        states[Connection.CELL_3G]  = 'Cell 3G connection';
+        states[Connection.CELL_4G]  = 'Cell 4G connection';
+        states[Connection.NONE]     = 'No network connection';
+        
+        alert('Connection type: ' + states[networkState]);
+    };
+        
     </script>
   </head>
   <body onload="onBodyLoad()">
