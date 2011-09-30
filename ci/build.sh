@@ -1,0 +1,1 @@
+/Developer/usr/bin/xcodebuild -project ../HelloWorld.xcodeproj -configuration “Debug” -sdk iphonesimulator4.3
