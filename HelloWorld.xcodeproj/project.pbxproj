@@ -34,6 +34,13 @@
 		025876D914314B9400F53A11 /* PhoneGap.plist in Resources */ = {isa = PBXBuildFile; fileRef = 025876D814314B9400F53A11 /* PhoneGap.plist */; };
 		025876DD14314B9400F53A11 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 025876DC14314B9400F53A11 /* AppDelegate.m */; };
 		025876E614314C7700F53A11 /* www in Resources */ = {isa = PBXBuildFile; fileRef = 025876E514314C7700F53A11 /* www */; };
+		C89E12E5143783320082D7E4 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C89E12E4143783320082D7E4 /* SenTestingKit.framework */; };
+		C89E12E6143783320082D7E4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0258769E14314B9400F53A11 /* UIKit.framework */; };
+		C89E12E7143783320082D7E4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0258769C14314B9400F53A11 /* Foundation.framework */; };
+		C89E12E8143783320082D7E4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 025876A014314B9400F53A11 /* CoreGraphics.framework */; };
+		C89E12EE143783320082D7E4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C89E12EC143783320082D7E4 /* InfoPlist.strings */; };
+		C89E12F0143783320082D7E4 /* HelloWorldLogicTest.h in Resources */ = {isa = PBXBuildFile; fileRef = C89E12EF143783320082D7E4 /* HelloWorldLogicTest.h */; };
+		C89E12F2143783320082D7E4 /* HelloWorldLogicTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C89E12F1143783320082D7E4 /* HelloWorldLogicTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +76,13 @@
 		025876DC14314B9400F53A11 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
 		025876DF14314B9400F53A11 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; name = README; path = Plugins/README; sourceTree = "<group>"; };
 		025876E514314C7700F53A11 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
+		C89E12E3143783320082D7E4 /* HelloWorldLogicTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelloWorldLogicTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C89E12E4143783320082D7E4 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		C89E12EB143783320082D7E4 /* HelloWorldLogicTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HelloWorldLogicTest-Info.plist"; sourceTree = "<group>"; };
+		C89E12ED143783320082D7E4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C89E12EF143783320082D7E4 /* HelloWorldLogicTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLogicTest.h; sourceTree = "<group>"; };
+		C89E12F1143783320082D7E4 /* HelloWorldLogicTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLogicTest.m; sourceTree = "<group>"; };
+		C89E12F3143783320082D7E4 /* HelloWorldLogicTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HelloWorldLogicTest-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +114,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C89E12DF143783320082D7E4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C89E12E5143783320082D7E4 /* SenTestingKit.framework in Frameworks */,
+				C89E12E6143783320082D7E4 /* UIKit.framework in Frameworks */,
+				C89E12E7143783320082D7E4 /* Foundation.framework in Frameworks */,
+				C89E12E8143783320082D7E4 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -108,6 +133,7 @@
 			children = (
 				025876E514314C7700F53A11 /* www */,
 				025876B614314B9400F53A11 /* HelloWorld */,
+				C89E12E9143783320082D7E4 /* HelloWorldLogicTest */,
 				0258769B14314B9400F53A11 /* Frameworks */,
 				0258769914314B9400F53A11 /* Products */,
 			);
@@ -117,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				0258769814314B9400F53A11 /* HelloWorld.app */,
+				C89E12E3143783320082D7E4 /* HelloWorldLogicTest.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -138,6 +165,7 @@
 				025876B014314B9400F53A11 /* SystemConfiguration.framework */,
 				025876B214314B9400F53A11 /* MobileCoreServices.framework */,
 				025876B414314B9400F53A11 /* CoreMedia.framework */,
+				C89E12E4143783320082D7E4 /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -229,6 +257,26 @@
 			name = Plugins;
 			sourceTree = "<group>";
 		};
+		C89E12E9143783320082D7E4 /* HelloWorldLogicTest */ = {
+			isa = PBXGroup;
+			children = (
+				C89E12EF143783320082D7E4 /* HelloWorldLogicTest.h */,
+				C89E12F1143783320082D7E4 /* HelloWorldLogicTest.m */,
+				C89E12EA143783320082D7E4 /* Supporting Files */,
+			);
+			path = HelloWorldLogicTest;
+			sourceTree = "<group>";
+		};
+		C89E12EA143783320082D7E4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C89E12EB143783320082D7E4 /* HelloWorldLogicTest-Info.plist */,
+				C89E12EC143783320082D7E4 /* InfoPlist.strings */,
+				C89E12F3143783320082D7E4 /* HelloWorldLogicTest-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -252,6 +300,24 @@
 			productReference = 0258769814314B9400F53A11 /* HelloWorld.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C89E12E2143783320082D7E4 /* HelloWorldLogicTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C89E12F6143783320082D7E4 /* Build configuration list for PBXNativeTarget "HelloWorldLogicTest" */;
+			buildPhases = (
+				C89E12DE143783320082D7E4 /* Sources */,
+				C89E12DF143783320082D7E4 /* Frameworks */,
+				C89E12E0143783320082D7E4 /* Resources */,
+				C89E12E1143783320082D7E4 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HelloWorldLogicTest;
+			productName = HelloWorldLogicTest;
+			productReference = C89E12E3143783320082D7E4 /* HelloWorldLogicTest.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -271,6 +337,7 @@
 			projectRoot = "";
 			targets = (
 				0258769714314B9400F53A11 /* HelloWorld */,
+				C89E12E2143783320082D7E4 /* HelloWorldLogicTest */,
 			);
 		};
 /* End PBXProject section */
@@ -294,6 +361,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C89E12E0143783320082D7E4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C89E12EE143783320082D7E4 /* InfoPlist.strings in Resources */,
+				C89E12F0143783320082D7E4 /* HelloWorldLogicTest.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -309,6 +385,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
 			shellScript = "\n\t\t\t\t\t\t\t\tif [ ! -d \"$PROJECT_DIR/www\" ] ; then\n\t\t\t\t\t\t\t\t\tcp -R /Users/Shared/PhoneGap/Frameworks/PhoneGap.framework/www \"$PROJECT_DIR\"\n\t\t\t\t\t\t\t\tfi\n\t\t\t\t\t\t\t\t# detect www folder reference in project, if missing, print warning\n\t\t\t\t\t\t\t\tgrep \"{isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = \\\"<group>\\\"; };\" \"$PROJECT_DIR/$PROJECT_NAME.xcodeproj/project.pbxproj\"\n\t\t\t\t\t\t\t\trc=$? \n\t\t\t\t\t\t\t\tif [ $rc != 0 ] ; then\n\t\t\t\t\t\t\t\techo -e \"warning: Missing - Add $PROJECT_DIR/www as a folder reference in your project. Just drag and drop the folder into your project, in Xcode 4.\" 1>&2\n\t\t\t\t\t\t\t\tfi\t\t\t\t\t\t\t";
+		};
+		C89E12E1143783320082D7E4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -326,6 +415,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C89E12DE143783320082D7E4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C89E12F2143783320082D7E4 /* HelloWorldLogicTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +451,14 @@
 				025876C814314B9400F53A11 /* es */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		C89E12EC143783320082D7E4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C89E12ED143783320082D7E4 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -434,6 +539,38 @@
 			};
 			name = Release;
 		};
+		C89E12F4143783320082D7E4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HelloWorldLogicTest/HelloWorldLogicTest-Prefix.pch";
+				INFOPLIST_FILE = "HelloWorldLogicTest/HelloWorldLogicTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		C89E12F5143783320082D7E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HelloWorldLogicTest/HelloWorldLogicTest-Prefix.pch";
+				INFOPLIST_FILE = "HelloWorldLogicTest/HelloWorldLogicTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -454,6 +591,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		C89E12F6143783320082D7E4 /* Build configuration list for PBXNativeTarget "HelloWorldLogicTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C89E12F4143783320082D7E4 /* Debug */,
+				C89E12F5143783320082D7E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

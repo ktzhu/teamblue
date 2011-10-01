@@ -9,10 +9,20 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>HelloWorldLogicTest.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>0258769714314B9400F53A11</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C89E12E2143783320082D7E4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
