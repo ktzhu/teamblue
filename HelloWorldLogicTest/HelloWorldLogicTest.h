@@ -7,7 +7,10 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
+#import <UIKit/UIKit.h>
+@interface HelloWorldLogicTest : SenTestCase {
 
-@interface HelloWorldLogicTest : SenTestCase
-
+    UIWebView *webView;
+    BOOL done;
+}
 @end
