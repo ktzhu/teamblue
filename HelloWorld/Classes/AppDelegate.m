@@ -22,6 +22,19 @@
 	/** If you need to do any extra app-specific initialization, you can do it here
 	 *  -jm
 	 **/
+    /*
+    UIWebView *webView = [[UIWebView alloc] init];
+    NSString *urlAddress = @"http://localhost:9876/capture";
+    
+    //Create a URL object.
+    NSURL *url = [NSURL URLWithString:urlAddress];
+    
+    //URL Requst Object
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    
+    //Load the request in the UIWebView.
+    [webView loadRequest:requestObj];
+     */
     return [super init];
 }
 
