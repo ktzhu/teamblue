@@ -6,4 +6,4 @@ LocationTest.prototype.testChicago = function () {
 	var latitude = 41.881944;
 	var longitude = -87.627778;
 	assertEquals("Found you! " + latitude + ", " + longitude, loc.locate(latitude, longitude));
-}
+};
