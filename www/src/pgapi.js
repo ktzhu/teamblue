@@ -1,7 +1,7 @@
 /*The purpose of this file is solely for testing the PhoneGap API
  *It may or may not related to the project.
  */
-/*
+
 PGAPI = function() { };
 
 PGAPI.prototype.checkConnection = function() {
@@ -18,4 +18,3 @@ PGAPI.prototype.checkConnection = function() {
     
     return states[networkState];
 };
-*/

@@ -1,7 +1,7 @@
 /*The purpose of this file is solely for testing the PhoneGap API
  *It may or may not related to the project.
  */
-/*
+
 
 PGAPITest = TestCase("PGAPITest");
 
@@ -15,4 +15,3 @@ PGAPITest.prototype.testCheckConnection = function() {
         assertSame("Should not be able to detect the network", "No network", connection);
     }
 }
-*/
