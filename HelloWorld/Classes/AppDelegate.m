@@ -39,6 +39,27 @@
 		NSLog(@"HelloWorld launchOptions = %@",url);
 	}
 	
+#ifdef DEBUG  
+    //add webview here
+    testWebView = [[UIWebView alloc] init];
+    NSString *urlAddress = @"http://localhost:9876/capture";
+    
+    //Create a URL object.
+    NSURL *url = [NSURL URLWithString:urlAddress];
+    
+    //URL Requst Object
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    
+    //Load the request in the UIWebView.
+    //[testWebView loadRequest:requestObj];
+
+    
+    PhoneGapViewController *testPhoneGapView = [[PhoneGapViewController alloc] init];
+    if (!testPhoneGapView.webView) {
+        testPhoneGapView.webView = [[UIWebView alloc] init];
+    }
+    [testPhoneGapView.webView loadRequest:requestObj]; 
+#endif
 	return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
 
@@ -95,7 +116,7 @@
  */
 - (BOOL)webView:(UIWebView *)theWebView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    NSLog(@"%@",[request URL]);
+    //NSLog(@"%@",[request URL]);
 	return [ super webView:theWebView shouldStartLoadWithRequest:request navigationType:navigationType ];
 }
 
