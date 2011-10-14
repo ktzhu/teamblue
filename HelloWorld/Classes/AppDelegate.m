@@ -42,13 +42,13 @@
     
     //add webview here
     testWebView = [[UIWebView alloc] init];
-    NSString *urlAddress = @"http://localhost:9876/capture";
+    //NSString *urlAddress = @"http://localhost:9876/capture";
     
     //Create a URL object.
-    NSURL *url = [NSURL URLWithString:urlAddress];
+    //NSURL *url = [NSURL URLWithString:urlAddress];
    
     //URL Requst Object
-    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    //NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     
     //Load the request in the UIWebView.
     //[testWebView loadRequest:requestObj];
