@@ -9,27 +9,52 @@
   <link rel="stylesheet" type="text/css" href="lib/jasmine-1.1.0.rc1/jasmine.css">
   <script type="text/javascript" src="lib/jasmine-1.1.0.rc1/jasmine.js"></script>
   <script type="text/javascript" src="lib/jasmine-1.1.0.rc1/jasmine-html.js"></script>
-  <script type="text/javascript" src="reporter/jasmine.console_reporter.js"></script>
+  <script type="text/javascript" src="reporter/jasmine.junit_reporter.js"></script>
   <!-- added phonegap.js...-->    
-  <script type="text/javascript" charset="utf-8" src="../phonegap-1.0.0.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../javascript/phonegap-1.0.0.js"></script>
   <!-- include source files here... -->
   <script type="text/javascript" src="spec/geo-spec.js"></script>
   <script type="text/javascript" src="spec/pgapi-spec.js"></script>
   <!-- include spec files here... -->
   <script type="text/javascript" src="../javascript/logics/geo.js"></script>
   <script type="text/javascript" src="../javascript/logics/pgapi.js"></script>
-  <script type="text/javascript" src="../javascript/jquery/jquery-1.6.4.js"></script>
   
       
   <script type="text/javascript">
+  	//jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
+    //jasmine.getEnv().execute();
+    /*
+  	function sendResult () {
+		var resultSender;
+	if (window.XMLHttpRequest) {
+            resultSender=new XMLHttpRequest(); 
+        }
+        else {
+            resultSender=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+	 var params = document.getElementById("bodyResult").innerHTML;
+	 //var params = "NOR";
+     resultSender.open("POST","http://localhost:9988",true);
+     resultSender.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	 resultSender.setRequestHeader("Content-length", params.length);
+	 resultSender.setRequestHeader("Connection", "close");
+     resultSender.send(params+"\r\n"+"END_TEST_RESULT"+"\r\n");
+     //resultSender.send("END_TEST_RESULT");
+     //resultSender.abort();
+
+	  }
+  */
     (function() {
       var jasmineEnv = jasmine.getEnv();
       jasmineEnv.updateInterval = 1000;
 
       var trivialReporter = new jasmine.TrivialReporter();
-	  var consoleReporter = new jasmine.ConsoleReporter();
+	  //var consoleReporter = new jasmine.ConsoleReporter();
+	  var jUnitReporter = new jasmine.JUnitXmlReporter();
+	  
       jasmineEnv.addReporter(trivialReporter);
-      jasmineEnv.addReporter(consoleReporter);
+      jasmineEnv.addReporter(jUnitReporter);
+      //jasmineEnv.addReporter(consoleReporter);
 
       jasmineEnv.specFilter = function(spec) {
         return trivialReporter.specFilter(spec);
@@ -46,13 +71,18 @@
 
       function execJasmine() {
         jasmineEnv.execute();
+        //consoleReporter.sendResult();
+        //sendResult();
       }
 
     })();
+    
+    
   </script>
 
 </head>
 
-<body>
+<body id="bodyResult">
 </body>
+
 </html>

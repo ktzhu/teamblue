@@ -13,12 +13,30 @@
      * jasmine.getEnv().addReporter(new jasmine.ConsoleReporter());
      * jasmine.getEnv().execute();
      */
+    var resultSender;
+    var params;
     var ConsoleReporter = function() {
         this.started = false;
         this.finished = false;
+        
+		if (window.XMLHttpRequest) {
+            resultSender=new XMLHttpRequest(); 
+        }
+        else {
+            resultSender=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        resultSender.open("POST","http://localhost:9988",true);
     };
 
     ConsoleReporter.prototype = {
+    	
+    	sendResult: function  () {
+		    resultSender.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	 		resultSender.setRequestHeader("Content-length", params.length);
+	 		resultSender.setRequestHeader("Connection", "close");
+			resultSender.send(params+"\r\n"+"END_TEST_RESULT"+"\r\n");
+		},
+    	
         reportRunnerResults: function(runner) {
             if (this.hasGroupedConsole()) {
                 var suites = runner.suites();
@@ -35,7 +53,9 @@
                 var fail_str = failed + (failed === 1 ? " failure in " : " failures in ");
 
                 this.log("Runner Finished.");
+                //params = params+"Runner Finished";
                 this.log(spec_str + fail_str + (dur/1000) + "s.");
+                //params = params+spec_str + fail_str + (dur/1000) + "s.";
             }
             this.finished = true;
         },
@@ -52,6 +72,7 @@
                 this.executed_specs = 0;
                 this.passed_specs = 0;
                 this.log("Runner Started.");
+                //params = params + "Runner Started.";
             }
         },
 
@@ -65,6 +86,7 @@
                 }
 
                 this.log(resultText);
+                //params = params + resultText;
             }
         },
 
@@ -72,6 +94,7 @@
             if (!this.hasGroupedConsole()) {
                 this.executed_specs++;
                 this.log(spec.suite.description + ' : ' + spec.description + ' ... ');
+                //params = params + spec.suite.description + ' : ' + spec.description + ' ... ';
             }
         },
 
@@ -79,6 +102,7 @@
             if (!this.hasGroupedConsole()) {
                 var results = suite.results();
                 this.log(suite.description + ": " + results.passedCount + " of " + results.totalCount + " passed.");
+                //params = params + suite.description + ": " + results.passedCount + " of " + results.totalCount + " passed.";
             }
         },
 
@@ -87,6 +111,7 @@
             if (console && console.log) {
                 console.log(str);
             }
+            params = params + str;
         }
     };
 

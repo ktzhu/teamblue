@@ -47,6 +47,7 @@
         this.savePath = savePath || '';
         this.consolidate = consolidate === jasmine.undefined ? true : consolidate;
         this.useDotNotation = useDotNotation === jasmine.undefined ? true : useDotNotation;
+        //this.consolidate = false;
     };
 
     JUnitXmlReporter.prototype = {
@@ -112,11 +113,13 @@
 
         reportRunnerResults: function(runner) {
             var suites = runner.suites();
+         	var output = '<?xml version="1.0" encoding="UTF-8" ?><testResult>';
             for (var i = 0; i < suites.length; i++) {
                 var suite = suites[i];
                 var fileName = 'TEST-' + this.getFullName(suite, true) + '.xml';
-                var output = '<?xml version="1.0" encoding="UTF-8" ?>';
-                // if we are consolidating, only write out top-level suites
+                
+            	//var output = '<?xml version="1.0" encoding="UTF-8" ?>';	
+                                // if we are consolidating, only write out top-level suites
                 if (this.consolidate && suite.parentSuite) {
                     continue;
                 }
@@ -124,13 +127,14 @@
                     output += "\n<testsuites>";
                     output += this.getNestedOutput(suite);
                     output += "\n</testsuites>";
-                    this.writeFile(this.savePath + fileName, output);
+                    //this.writeFile(this.savePath + fileName, output);
                 }
                 else {
                     output += suite.output;
-                    this.writeFile(this.savePath + fileName, output);
+                    //this.writeFile(this.savePath + fileName, output);
                 }
             }
+            this.writeFile('', output+"</testResult>");
         },
 
         getNestedOutput: function(suite) {
@@ -142,6 +146,24 @@
         },
 
         writeFile: function(filename, text) {
+        	// TeamBlue Jasmine Server
+        	var resultSender;
+			if (window.XMLHttpRequest) {
+            	resultSender=new XMLHttpRequest(); 
+        	}
+        	else {
+            	resultSender=new ActiveXObject("Microsoft.XMLHTTP");
+        	}
+	 		//var params = document.getElementById("bodyResult").innerHTML;
+	 		//var params = "NOR";
+     		resultSender.open("POST","http://localhost:9988",true);
+     		resultSender.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	 		resultSender.setRequestHeader("Content-length", text.length);
+	 		resultSender.setRequestHeader("Connection", "close");
+     		resultSender.send(text+"\r\n"+"END_TEST_RESULT"+"\r\n");
+     		//resultSender.send("END_TEST_RESULT");
+     		//resultSender.abort();
+
             // Rhino
             try {
                 var out = new java.io.BufferedWriter(new java.io.FileWriter(filename));

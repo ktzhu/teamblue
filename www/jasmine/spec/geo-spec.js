@@ -9,7 +9,7 @@ describe("Geo Tests", function() {
          describe("When estimate walking time", function () {
                   it("should get an average walikg time in km by default", function() {
                      expect(geo.walkingTime(1)).toEqual(720);
-                     expect(geo.walkingTime(0.005, "km")).toEqual(3.6);
+                     expect(geo.walkingTime(1.005, "km")).toEqual(3.6);
                      });
                   
                   it("should get an average walikg time in miles by specified with m, miles, or mile", function() {
@@ -18,7 +18,7 @@ describe("Geo Tests", function() {
                      expect(geo.walkingTime(100, "mile")).toEqual(120000);
                      });
                   
-                  it("should be roburst enough to process nigative distance as positive distance, unsuppoted unit and nonnumber as zero", function() {
+                  it("should be roburst enough to process negative distance as positive distance, unsuppoted unit and nonnumber as zero", function() {
                      expect(geo.walkingTime(-1)).toEqual(720);
                      expect(geo.walkingTime(1, "light year")).toEqual(0);
                      expect(geo.walkingTime("ten")).toEqual(0);
