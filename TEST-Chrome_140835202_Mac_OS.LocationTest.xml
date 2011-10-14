@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Chrome_140835202_Mac_OS.LocationTest" errors="1" failures="0" tests="1" time="0.0010">
+<testcase classname="Chrome_140835202_Mac_OS.LocationTest" name="testChicago" time="0.0010">
+<error type="error">[{"message":"Object [object Object] has no method 'locate'","name":"TypeError","stack":"TypeError: Object [object Object] has no method 'locate'\n    at [object Object].testChicago (http://localhost:9876/test//Users/Katie/Dev/teamblue/www/src-test/locator-tests.js:8:64)\n    at [object Object].runTest (http://localhost:9876/static/runner.js:1870:32)\n    at b (http://localhost:9876/static/jstestdrivernamespace.js:1:420)\n    at nextTest (http://localhost:9876/static/runner.js:1775:16)\n    at [object Object].pausingRunTestLoop [as runTestLoop_] (http://localhost:9876/static/runner.js:1787:5)\n    at [object Object].runTestConfiguration (http://localhost:9876/static/runner.js:1831:8)\n    at [object Object].runTestConfiguration (http://localhost:9876/static/runner.js:2218:33)\n    at [object Object].dispatch_ (http://localhost:9876/static/runner.js:356:13384)\n    at [object Object].runTestConfiguration (http://localhost:9876/static/runner.js:356:13812)\n    at [object Object].runConfiguration (http://localhost:9876/static/runner.js:356:24879)"}]</error>
+</testcase>
+</testsuite>

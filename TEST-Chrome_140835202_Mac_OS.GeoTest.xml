@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Chrome_140835202_Mac_OS.GeoTest" errors="0" failures="0" tests="8" time="0.0030">
+<testcase classname="Chrome_140835202_Mac_OS.GeoTest" name="testSameCoords" time="0.0010"/>
+<testcase classname="Chrome_140835202_Mac_OS.GeoTest" name="testSameCoords2" time="0.0010"/>
+<testcase classname="Chrome_140835202_Mac_OS.GeoTest" name="testDistance" time="0.0"/>
+<testcase classname="Chrome_140835202_Mac_OS.GeoTest" name="testDistance2" time="0.0"/>
+<testcase classname="Chrome_140835202_Mac_OS.GeoTest" name="testDistance3" time="0.0"/>
+<testcase classname="Chrome_140835202_Mac_OS.GeoTest" name="testWalkingTimeGivenMiles" time="0.0010"/>
+<testcase classname="Chrome_140835202_Mac_OS.GeoTest" name="testWalkingTime" time="0.0"/>
+<testcase classname="Chrome_140835202_Mac_OS.GeoTest" name="testWalkingTimeNegativeCase" time="0.0"/>
+</testsuite>

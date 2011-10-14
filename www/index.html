@@ -5,128 +5,131 @@
 
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
 
-	<link rel="stylesheet" href="css/jquery/jquery.mobile-1.0rc1.css" />
+		<link rel="stylesheet" href="css/jquery/jquery.mobile-1.0rc1.css" />
+		
+		<!-- iPad/iPhone specific css below, add after your main css >
+		<link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="ipad.css" type="text/css" />		
+		<link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="iphone.css" type="text/css" />		
+		-->
+		
+		<!-- If your application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
+		<script type="text/javascript" charset="utf-8" src="javascript/phonegap-1.0.0.js"></script>
+		
+		<script type="text/javascript" charset="utf-8" src="javascript/jquery/jquery-1.6.4.js"></script>
+		<script type="text/javascript" charset="utf-8" src="javascript/jquery/jquery.mobile-1.0rc1.js"></script>
+		
+	  <script type="text/javascript" charset="utf-8">
 	
-	<!-- iPad/iPhone specific css below, add after your main css >
-	<link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="ipad.css" type="text/css" />		
-	<link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="iphone.css" type="text/css" />		
-	-->
-	<!-- If your application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
-	<script type="text/javascript" charset="utf-8" src="javascript/phonegap-1.0.0.js"></script>
-	<script type="text/javascript" charset="utf-8" src="javascripts/jquery-1.6.4.js"></script>
-	<script type="text/javascript" charset="utf-8" src="javascript/jquery/jquery.mobile-1.0rc1.js"></script>
-  <script type="text/javascript" charset="utf-8">
-
-        var getTestDriverClient;
-	// If you want to prevent dragging, uncomment this section
-	/*
-	function preventBehavior(e) 
-	{ 
-      e.preventDefault(); 
-    };
-	document.addEventListener("touchmove", preventBehavior, false);
-	*/
-	
-	/* If you are supporting your own protocol, the var invokeString will contain any arguments to the app launch.
-	see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
-	for more details -jm */
-	/*
-	function handleOpenURL(url)
-	{
-		// TODO: do something with the url passed in.
-	}
-	*/
-	
-	function onBodyLoad()
-	{		
-		document.addEventListener("deviceready",onDeviceReady,false);
-	}
-	
-	/* When this function is called, PhoneGap has been initialized and is ready to roll */
-	/* If you are supporting your own protocol, the var invokeString will contain any arguments to the app launch.
-	see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
-	for more details -jm */
-	function onDeviceReady()
-	{
-        window.location = "SpecRunner.html";
-        // do your thing!
-		//navigator.notification.alert("PhoneGap "+ device.phonegap +" is working on "+ device.name)
-        
-        //Access Accelerometer
-        //navigator.accelerometer.getCurrentAcceleration(onGetCurrentAccelerationSuccess, onGetCurrentAccelerationError);
-        
-        //Access Network Connection
-        //checkConnection();
-        
-        if (window.XMLHttpRequest) {
-            getTestDriverClient=new XMLHttpRequest(); 
-        }
-        else {
-            getTestDriverClient=new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        
-        try{ 
-            //getTestsRequest();
-        } catch(e)
-        {
-            alert("Error on device ready: "+e);
-        } 
-        
-	}
-        /*Try to hook in jsTestDriver
-         */
-        function getTestsRequest() {
-            getTestDriverClient.onreadystatechange = getTestsFunction;
-            getTestDriverClient.open("GET","http://localhost:9876/capture",true);
-            getTestDriverClient.send();
-        };
-        
-        function getTestsFunction (){ 
-            //document.getElementById("jsTestDriver").innerHTML = getTestDriverClient.responseText;
-        };
-        
-    /*Accelerometer callback*/
-    function onGetCurrentAccelerationSuccess(acceleration) {
-        alert('Acceleration X: ' + acceleration.x + '\n' +
-                'Acceleration Y: ' + acceleration.y + '\n' +
-                'Acceleration Z: ' + acceleration.z + '\n' +
-                'Timestamp: '      + acceleration.timestamp + '\n');
-    };
-        
-    function onGetCurrentAccelerationError() {
-        alert('onError!');
-    };
-    
-    /*check internet connection*/
-    function checkConnection() {
-        var networkState = navigator.network.connection.type;
-        
-        var states = {};
-        states[Connection.UNKNOWN]  = 'Unknown connection';
-        states[Connection.ETHERNET] = 'Ethernet connection';
-        states[Connection.WIFI]     = 'WiFi connection';
-        states[Connection.CELL_2G]  = 'Cell 2G connection';
-        states[Connection.CELL_3G]  = 'Cell 3G connection';
-        states[Connection.CELL_4G]  = 'Cell 4G connection';
-        states[Connection.NONE]     = 'No network connection';
-        
-        alert('Connection type: ' + states[networkState]);
-    };
-      
-    </script>
+	  	var getTestDriverClient;
+			// If you want to prevent dragging, uncomment this section
+			/*
+			function preventBehavior(e) 
+			{ 
+		      e.preventDefault(); 
+		    };
+			document.addEventListener("touchmove", preventBehavior, false);
+			*/
+			
+			/* If you are supporting your own protocol, the var invokeString will contain any arguments to the app launch.
+			see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
+			for more details -jm */
+			/*
+			function handleOpenURL(url)
+			{
+				// TODO: do something with the url passed in.
+			}
+			*/
+		
+			function onBodyLoad()
+			{		
+				document.addEventListener("deviceready",onDeviceReady,false);
+			}
+			
+			/* When this function is called, PhoneGap has been initialized and is ready to roll */
+			/* If you are supporting your own protocol, the var invokeString will contain any arguments to the app launch.
+			see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
+			for more details -jm */
+			function onDeviceReady()
+			{
+		        window.location = "SpecRunner.html";
+		        // do your thing!
+				//navigator.notification.alert("PhoneGap "+ device.phonegap +" is working on "+ device.name)
+		        
+		        //Access Accelerometer
+		        //navigator.accelerometer.getCurrentAcceleration(onGetCurrentAccelerationSuccess, onGetCurrentAccelerationError);
+		        
+		        //Access Network Connection
+		        //checkConnection();
+		        
+		        if (window.XMLHttpRequest) {
+		            getTestDriverClient=new XMLHttpRequest(); 
+		        }
+		        else {
+		            getTestDriverClient=new ActiveXObject("Microsoft.XMLHTTP");
+		        }
+		        
+		        try{ 
+		            //getTestsRequest();
+		        } catch(e)
+		        {
+		            alert("Error on device ready: "+e);
+		        } 
+		        
+			}
+		        /*Try to hook in jsTestDriver
+		         */
+		        function getTestsRequest() {
+		            getTestDriverClient.onreadystatechange = getTestsFunction;
+		            getTestDriverClient.open("GET","http://localhost:9876/capture",true);
+		            getTestDriverClient.send();
+		        };
+		        
+		        function getTestsFunction (){ 
+		            //document.getElementById("jsTestDriver").innerHTML = getTestDriverClient.responseText;
+		        };
+		        
+		    /*Accelerometer callback*/
+		    function onGetCurrentAccelerationSuccess(acceleration) {
+		        alert('Acceleration X: ' + acceleration.x + '\n' +
+		                'Acceleration Y: ' + acceleration.y + '\n' +
+		                'Acceleration Z: ' + acceleration.z + '\n' +
+		                'Timestamp: '      + acceleration.timestamp + '\n');
+		    };
+		        
+		    function onGetCurrentAccelerationError() {
+		        alert('onError!');
+		    };
+		    
+		    /*check internet connection*/
+		    function checkConnection() {
+		        var networkState = navigator.network.connection.type;
+		        
+		        var states = {};
+		        states[Connection.UNKNOWN]  = 'Unknown connection';
+		        states[Connection.ETHERNET] = 'Ethernet connection';
+		        states[Connection.WIFI]     = 'WiFi connection';
+		        states[Connection.CELL_2G]  = 'Cell 2G connection';
+		        states[Connection.CELL_3G]  = 'Cell 3G connection';
+		        states[Connection.CELL_4G]  = 'Cell 4G connection';
+		        states[Connection.NONE]     = 'No network connection';
+		        
+		        alert('Connection type: ' + states[networkState]);
+		    };
+	    </script>
   </head>
-  <body onload="onBodyLoad(); initialize();">
-      
-  	  <h1>Hey, it's PhoneGap!</h1>
-	  <p>Hey, Shawn added this!</p>
-      <p>Nor's joined this repository.</p>
-      <p>Our repository is at <a href="https://github.com/kzhu91/teamblue">teamblue</a></p>
-	  <p>Don't know how to get started? Check out <em><a href="http://github.com/phonegap/phonegap-start">PhoneGap Start</a></em> 
-	  <h2>Where are you?</h2>
-      
-      <p id="geolocation">Finding geolocation...</p>
-      
-      <div id="jsTestDriver"></div>
-      <a href="jasmine/SpecRunner.html">Test</a>
+  
+  <body onload="onBodyLoad(); initialize();">	  
+	  <div data-role="page" id="home">  
+	    <div data-role="header">     
+	      <h1>Diversey #76</h1>                     
+	    </div>         
+	    <div data-role="content">
+	      Team Blue Bus Tracker Demo
+	      CTA Diversey #76 Bus        
+	    </div>     
+	  </div>
+    <div id="jsTestDriver"></div>
+    <a href="jasmine/SpecRunner.html">Test</a>
   </body>
+  
 </html>

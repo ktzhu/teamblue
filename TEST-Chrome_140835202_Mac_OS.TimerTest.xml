@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Chrome_140835202_Mac_OS.TimerTest" errors="0" failures="0" tests="1" time="0.0010">
+<testcase classname="Chrome_140835202_Mac_OS.TimerTest" name="testCountdown" time="0.0010"/>
+</testsuite>
