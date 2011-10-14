@@ -47,12 +47,12 @@
 	for more details -jm */
 	function onDeviceReady()
 	{
-        window.location = "SpecRunner.html";
+        window.location = "jasmine/SpecRunner.html";
         // do your thing!
 		//navigator.notification.alert("PhoneGap "+ device.phonegap +" is working on "+ device.name)
         
         //Access Accelerometer
-        //navigator.accelerometer.getCurrentAcceleration(onGetCurrentAccelerationSuccess, onGetCurrentAccelerationError);
+        navigator.accelerometer.getCurrentAcceleration(onGetCurrentAccelerationSuccess, onGetCurrentAccelerationError);
         
         //Access Network Connection
         //checkConnection();
@@ -85,14 +85,14 @@
         };
         
     /*Accelerometer callback*/
-    function onGetCurrentAccelerationSuccess(acceleration) {
+    function onAccSuccess(acceleration) {
         alert('Acceleration X: ' + acceleration.x + '\n' +
                 'Acceleration Y: ' + acceleration.y + '\n' +
                 'Acceleration Z: ' + acceleration.z + '\n' +
                 'Timestamp: '      + acceleration.timestamp + '\n');
     };
         
-    function onGetCurrentAccelerationError() {
+    function onAccError() {
         alert('onError!');
     };
     

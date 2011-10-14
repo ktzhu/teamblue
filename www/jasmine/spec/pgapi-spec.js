@@ -11,13 +11,14 @@ describe("PhoneGap API Tests", function() {
                   it("Should be able to detect network", function(){
                      var connection = pgAPI.checkConnection();
                      expect(connection).not.toEqual("No Network");
+                     //expect(connection).toEqual("No Network");
                      });
                   }
                   else{
                   var connection = pgAPI.checkConnection();
                   it("Should not be able to detect network",function(){
                      var connection = pgAPI.checkConnection();
-                     expect(connection).not.toEqual("No Network");
+                     expect(connection).toEqual("No Network");
                      });
                   }
                   
