@@ -1,1 +1,1 @@
-java -jar jsTestDriver/JsTestDriver.jar --config jsTestDriver/jsTestDriver.conf --port 9876 --browser open --tests all --testOutput .
+java -cp ./TBJasmineServer/bin/ BlueTestListener 9988

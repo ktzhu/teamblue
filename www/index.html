@@ -19,9 +19,7 @@
 		<script type="text/javascript" charset="utf-8" src="javascript/jquery/jquery.mobile-1.0rc1.js"></script>
 		
 	  <script type="text/javascript" charset="utf-8">
-	
-	  	var getTestDriverClient;
-			// If you want to prevent dragging, uncomment this section
+				// If you want to prevent dragging, uncomment this section
 			/*
 			function preventBehavior(e) 
 			{ 
@@ -51,7 +49,7 @@
 			for more details -jm */
 			function onDeviceReady()
 			{
-		        window.location = "SpecRunner.html";
+		        window.location = "jasmine/SpecRunner.html";
 		        // do your thing!
 				//navigator.notification.alert("PhoneGap "+ device.phonegap +" is working on "+ device.name)
 		        
@@ -61,33 +59,8 @@
 		        //Access Network Connection
 		        //checkConnection();
 		        
-		        if (window.XMLHttpRequest) {
-		            getTestDriverClient=new XMLHttpRequest(); 
-		        }
-		        else {
-		            getTestDriverClient=new ActiveXObject("Microsoft.XMLHTTP");
-		        }
-		        
-		        try{ 
-		            //getTestsRequest();
-		        } catch(e)
-		        {
-		            alert("Error on device ready: "+e);
-		        } 
-		        
 			}
-		        /*Try to hook in jsTestDriver
-		         */
-		        function getTestsRequest() {
-		            getTestDriverClient.onreadystatechange = getTestsFunction;
-		            getTestDriverClient.open("GET","http://localhost:9876/capture",true);
-		            getTestDriverClient.send();
-		        };
-		        
-		        function getTestsFunction (){ 
-		            //document.getElementById("jsTestDriver").innerHTML = getTestDriverClient.responseText;
-		        };
-		        
+		        		        
 		    /*Accelerometer callback*/
 		    function onGetCurrentAccelerationSuccess(acceleration) {
 		        alert('Acceleration X: ' + acceleration.x + '\n' +

@@ -5,16 +5,6 @@ import java.text.SimpleDateFormat;
 import java.io.*;
 import java.util.*;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import org.w3c.dom.CharacterData;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
-
 
 public class BlueTestListener {
 	public static void main(String argv[]) throws IOException{
@@ -22,8 +12,23 @@ public class BlueTestListener {
 		ServerSocket ss = new ServerSocket(portNum);
 		
 		//while(true)
-			new BlueTestConnection(ss.accept(), portNum).start();
+		BlueTestConnection testClient =	new BlueTestConnection(ss.accept(), portNum);
+		testClient.start();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		Thread.yield();
 		
+		if(testClient.isAllPassed){
+			System.out.println("Awesome, nothing breaks");
+			System.exit(0);
+		}
+		else{
+			System.out.println("Oh crap, you just broke it, fix it now");
+			System.exit(1);
+		}
 		
 	}
 }
@@ -31,10 +36,13 @@ public class BlueTestListener {
 class BlueTestConnection extends Thread {
 	Socket client;
 	int portNum;
-	String result;
+	public String result;
+	public boolean isAllPassed;
 	BlueTestConnection(Socket client, int portNum) throws SocketException{
+		this.setPriority(Thread.MAX_PRIORITY);
 		this.client = client;
 		this.portNum = portNum;
+		isAllPassed = true;
 		result = "";
 	}
 	
@@ -68,7 +76,9 @@ class BlueTestConnection extends Thread {
 				client.close();
 				connection = false;
 				
-				this.printTestResult(result);
+				BlueJUnitToTeamCity report = new BlueJUnitToTeamCity();
+				report.printTeamCityTestReport(result);
+				if(report.numFailuresOcc>0) {isAllPassed = false;}
 				//System.out.println("Close");
 			}
 			
@@ -76,36 +86,6 @@ class BlueTestConnection extends Thread {
 
 		}
 		catch(IOException e){}
-	}
-	
-	private void printTestResult(String xmlRecords){
-		try {
-	        DocumentBuilderFactory dbf =
-	            DocumentBuilderFactory.newInstance();
-	        DocumentBuilder db = dbf.newDocumentBuilder();
-	        InputSource is = new InputSource();
-	        is.setCharacterStream(new StringReader(xmlRecords));
-
-	        Document doc = db.parse(is);
-	        NodeList nodes = doc.getElementsByTagName("testsuites");
-
-	        // iterate the employees
-	        for (int i = 0; i < nodes.getLength(); i++) {
-	           Element element = (Element) nodes.item(i);
-	           /*
-	           NodeList name = element.getElementsByTagName("name");
-	           Element line = (Element) name.item(0);
-	           System.out.println("Name: " + getCharacterDataFromElement(line));
-
-	           NodeList title = element.getElementsByTagName("title");
-	           line = (Element) title.item(0);
-	           System.out.println("Title: " + getCharacterDataFromElement(line));
-	           */
-	        }
-	    }
-	    catch (Exception e) {
-	        e.printStackTrace();
-	    }
 	}
 	 
 	  private String construct_http_header(int return_code, int file_type) {
@@ -157,15 +137,6 @@ class BlueTestConnection extends Thread {
 	    //ok return our newly created header!
 	    return s;
 	  }
-	  
-	  public String getCharacterDataFromElement(Element e) {
-		    Node child = e.getFirstChild();
-		    if (child instanceof CharacterData) {
-		       CharacterData cd = (CharacterData) child;
-		       return cd.getData();
-		    }
-		    return "?";
-		  }
 }
 
 
