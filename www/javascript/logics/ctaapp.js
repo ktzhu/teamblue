@@ -178,6 +178,6 @@ cta.DataAccess.prototype.errorHandler = function (error) {
 	return true;  
 }; 
  
-    // null db data handler
+    // null db data handlers
 cta.DataAccess.prototype.nullDataHandler = function (transaction, results) { console.log('null'); };
  
