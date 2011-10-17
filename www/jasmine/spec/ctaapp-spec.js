@@ -1,5 +1,21 @@
 describe("CTA Tests", function() {
-
+	
+	describe("When getting data from DB", function () {
+		var ctaDataAccess;
+		
+		beforeEach(function() {
+			window.localStorage.removeItem('CTADatabaseVersion');
+			ctaDataAccess = new cta.DataAccess();
+		});
+		
+		it("should be able to create database and populate data", function() {
+			expect(ctaDataAccess.isDBSupported).toEqual(true);
+			expect(window.localStorage.getItem('CTADatabaseVersion')).toEqual(ctaDataAccess.dbVersion);
+			expect(ctaDataAccess.isPopulated).toEqual(true);
+			expect(ctaDataAccess.ctadb).not.toEqual(null);
+			//console.log(ctaDataAccess.ctadb);
+		});
+	});
          
          describe("When getting closest bus stops", function () {
          	

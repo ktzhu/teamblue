@@ -14,7 +14,7 @@
 		
 		<!-- If your application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
 		<script type="text/javascript" charset="utf-8" src="javascript/phonegap-1.0.0.js"></script>
-		
+		<script type="text/javascript" charset="utf-8" src="javascript/logics/ctaapp.js"></script>
 		<script type="text/javascript" charset="utf-8" src="javascript/jquery/jquery-1.6.4.js"></script>
 		<script type="text/javascript" charset="utf-8" src="javascript/jquery/jquery.mobile-1.0rc1.js"></script>
 		
@@ -40,8 +40,17 @@
 		
 			function onBodyLoad()
 			{		
+				//console.log('hello 1');
+				/*
+				this.lat = 40;
+				this.lon = 80;
+				
+				var ctaDataAccess = new cta.DataAccess();
+				console.log(ctaDataAccess.ctadb);
+				ctaDataAccess.loadBusStops(onBusStopsReady);
+				*/
 				document.addEventListener("deviceready",onDeviceReady,false);
-			}
+			};
 			
 			/* When this function is called, PhoneGap has been initialized and is ready to roll */
 			/* If you are supporting your own protocol, the var invokeString will contain any arguments to the app launch.
@@ -49,60 +58,68 @@
 			for more details -jm */
 			function onDeviceReady()
 			{
-		        window.location = "jasmine/SpecRunner.html";
+		        //window.location = "jasmine/SpecRunner.html";
 		        // do your thing!
 				//navigator.notification.alert("PhoneGap "+ device.phonegap +" is working on "+ device.name)
-		        
-		        //Access Accelerometer
-		        //navigator.accelerometer.getCurrentAcceleration(onGetCurrentAccelerationSuccess, onGetCurrentAccelerationError);
-		        
-		        //Access Network Connection
-		        //checkConnection();
-		        
-			}
-		        		        
-		    /*Accelerometer callback*/
-		    function onGetCurrentAccelerationSuccess(acceleration) {
-		        alert('Acceleration X: ' + acceleration.x + '\n' +
-		                'Acceleration Y: ' + acceleration.y + '\n' +
-		                'Acceleration Z: ' + acceleration.z + '\n' +
-		                'Timestamp: '      + acceleration.timestamp + '\n');
-		    };
-		        
-		    function onGetCurrentAccelerationError() {
-		        alert('onError!');
-		    };
-		    
-		    /*check internet connection*/
-		    function checkConnection() {
-		        var networkState = navigator.network.connection.type;
-		        
-		        var states = {};
-		        states[Connection.UNKNOWN]  = 'Unknown connection';
-		        states[Connection.ETHERNET] = 'Ethernet connection';
-		        states[Connection.WIFI]     = 'WiFi connection';
-		        states[Connection.CELL_2G]  = 'Cell 2G connection';
-		        states[Connection.CELL_3G]  = 'Cell 3G connection';
-		        states[Connection.CELL_4G]  = 'Cell 4G connection';
-		        states[Connection.NONE]     = 'No network connection';
-		        
-		        alert('Connection type: ' + states[networkState]);
-		    };
+				//navigator.geolocation.getCurrentPosition(onPositionSuccess, onError);
+				this.lat = 40;
+				this.lon = 80;
+				
+				var ctaDataAccess = new cta.DataAccess();
+				console.log(ctaDataAccess.ctadb);
+				ctaDataAccess.loadBusStops(onBusStopsReady);
+				
+			};
+			
+			function onBusStopsReady(busStops)
+			{
+				console.log(busStops);
+				var ctaUtil = new cta.Utilities();
+				var ctaDOM = new cta.DOM();	
+				var closeStops = ctaUtil.dFindClosestBusStops(this.lat, this.lon, busStops, 5);
+				document.getElementById('busStopList').innerHTML = 	ctaDOM.renderBusStops(closeStops);	
+			};
+			
+			function onPositionSuccess(position) {
+				this.lat = position.coords.latitude;
+				this.lon = position.coords.longitude;
+				var ctaDataAccess = new cta.DataAccess();
+				ctaDataAccess.loadBusStops(onBusStopsReady);
+				/*
+    alert('Latitude: '          + position.coords.latitude          + '\n' +
+          'Longitude: '         + position.coords.longitude         + '\n' +
+          'Altitude: '          + position.coords.altitude          + '\n' +
+          'Accuracy: '          + position.coords.accuracy          + '\n' +
+          'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+          'Heading: '           + position.coords.heading           + '\n' +
+          'Speed: '             + position.coords.speed             + '\n' +
+          'Timestamp: '         + new Date(position.timestamp)      + '\n');
+          */
+			};
+
+// onError Callback receives a PositionError object
+//
+			function onError(error) {
+    			alert('code: '    + error.code    + '\n' +
+          			  'message: ' + error.message + '\n');
+				};
+
+
 	    </script>
   </head>
   
-  <body onload="onBodyLoad(); initialize();">	  
+  <body onload="onBodyLoad();">	  
 	  <div data-role="page" id="home">  
 	    <div data-role="header">     
 	      <h1>Diversey #76</h1>                     
 	    </div>         
-	    <div data-role="content">
-	      Team Blue Bus Tracker Demo
-	      CTA Diversey #76 Bus        
-	    </div>     
+	    <div data-role="content" class="ui-content" role="main">
+	      <div class="content-primary" id="busStopList">
+			
+		   </div>
+	      
+	   	</div>     
 	  </div>
-    <div id="jsTestDriver"></div>
-    <a href="jasmine/SpecRunner.html">Test</a>
   </body>
   
 </html>
