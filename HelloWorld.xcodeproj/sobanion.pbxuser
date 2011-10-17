@@ -14,7 +14,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					341,
+					787,
 					20,
 					48,
 					43,
@@ -31,12 +31,17 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 340574754;
-			PBXWorkspaceStateSaveDate = 340574754;
+			PBXPerProjectTemplateStateSaveDate = 340576044;
+			PBXWorkspaceStateSaveDate = 340576044;
 		};
 		perUserProjectItems = {
-			FCE337C914360801004F93AC = FCE337C914360801004F93AC /* PBXBookmark */;
-			FCE337CA14360801004F93AC = FCE337CA14360801004F93AC /* PBXTextBookmark */;
+			FC553F6C144CC73600EDC865 /* PBXTextBookmark */ = FC553F6C144CC73600EDC865 /* PBXTextBookmark */;
+			FC723B69144CC71100760B58 = FC723B69144CC71100760B58 /* PBXTextBookmark */;
+			FC723B6B144CC71100760B58 = FC723B6B144CC71100760B58 /* PBXTextBookmark */;
+			FC723B6D144CC71100760B58 = FC723B6D144CC71100760B58 /* PBXTextBookmark */;
+			FC723B6F144CC71100760B58 = FC723B6F144CC71100760B58 /* PBXTextBookmark */;
+			FC723B71144CC71100760B58 = FC723B71144CC71100760B58 /* PBXTextBookmark */;
+			FC723B72144CC71100760B58 = FC723B72144CC71100760B58 /* PBXTextBookmark */;
 		};
 		sourceControlManager = FC7D10411434B9700028D116 /* Source Control */;
 		userBuildSettings = {
@@ -50,6 +55,116 @@
 	};
 	C89E12E2143783320082D7E4 /* HelloWorldLogicTest */ = {
 		activeExec = 0;
+	};
+	FC553F6C144CC73600EDC865 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC723B73144CC71100760B58 /* index.html */;
+		name = "index.html: 28";
+		rLen = 0;
+		rLoc = 1419;
+		rType = 0;
+		vrLen = 1880;
+		vrLoc = 849;
+	};
+	FC723B69144CC71100760B58 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC723B6A144CC71100760B58 /* runapp.sh */;
+		name = "runapp.sh: 6";
+		rLen = 0;
+		rLoc = 380;
+		rType = 0;
+		vrLen = 381;
+		vrLoc = 0;
+	};
+	FC723B6A144CC71100760B58 /* runapp.sh */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = text.script.sh;
+		name = runapp.sh;
+		path = /Users/sobanion/classes/fall2011/agile/code/teamblue/ci/runapp.sh;
+		sourceTree = "<absolute>";
+	};
+	FC723B6B144CC71100760B58 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC723B6C144CC71100760B58 /* cleanup.sh */;
+		name = "cleanup.sh: 2";
+		rLen = 0;
+		rLoc = 83;
+		rType = 0;
+		vrLen = 83;
+		vrLoc = 0;
+	};
+	FC723B6C144CC71100760B58 /* cleanup.sh */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = text.script.sh;
+		name = cleanup.sh;
+		path = /Users/sobanion/classes/fall2011/agile/code/teamblue/ci/cleanup.sh;
+		sourceTree = "<absolute>";
+	};
+	FC723B6D144CC71100760B58 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC723B6E144CC71100760B58 /* test.sh */;
+		name = "test.sh: 1";
+		rLen = 0;
+		rLoc = 53;
+		rType = 0;
+		vrLen = 53;
+		vrLoc = 0;
+	};
+	FC723B6E144CC71100760B58 /* test.sh */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = text.script.sh;
+		name = test.sh;
+		path = /Users/sobanion/classes/fall2011/agile/code/teamblue/ci/test.sh;
+		sourceTree = "<absolute>";
+	};
+	FC723B6F144CC71100760B58 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC723B70144CC71100760B58 /* build.sh */;
+		name = "build.sh: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 136;
+		vrLoc = 0;
+	};
+	FC723B70144CC71100760B58 /* build.sh */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = text.script.sh;
+		name = build.sh;
+		path = /Users/sobanion/classes/fall2011/agile/code/teamblue/ci/build.sh;
+		sourceTree = "<absolute>";
+	};
+	FC723B71144CC71100760B58 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FCE337CB14360801004F93AC /* index.html */;
+		name = "index.html: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1631;
+		vrLoc = 0;
+	};
+	FC723B72144CC71100760B58 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC723B73144CC71100760B58 /* index.html */;
+		name = "index.html: 28";
+		rLen = 0;
+		rLoc = 1419;
+		rType = 0;
+		vrLen = 1884;
+		vrLoc = 942;
+	};
+	FC723B73144CC71100760B58 /* index.html */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = text.html;
+		name = index.html;
+		path = /Users/sobanion/classes/fall2011/agile/code/teamblue/www/index.html;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1160, 1625}}";
+			sepNavSelRange = "{1419, 0}";
+			sepNavVisRange = "{849, 1880}";
+		};
 	};
 	FC7D0FFF1434B9530028D116 /* HelloWorld */ = {
 		isa = PBXExecutable;
@@ -92,26 +207,6 @@
 	FC7D10421434B9700028D116 /* Code sense */ = {
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
-	};
-	FCE337C5143607FA004F93AC /* index.html */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = text.html;
-		path = index.html;
-		sourceTree = "<group>";
-	};
-	FCE337C914360801004F93AC /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = FCE337C5143607FA004F93AC /* index.html */;
-	};
-	FCE337CA14360801004F93AC /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FCE337CB14360801004F93AC /* index.html */;
-		name = "index.html: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 869;
-		vrLoc = 0;
 	};
 	FCE337CB14360801004F93AC /* index.html */ = {
 		isa = PBXFileReference;
