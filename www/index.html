@@ -15,6 +15,8 @@
 		<!-- If your application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
 		<script type="text/javascript" charset="utf-8" src="javascript/phonegap-1.0.0.js"></script>
 		<script type="text/javascript" charset="utf-8" src="javascript/logics/ctaapp.js"></script>
+		<script type="text/javascript" charset="utf-8" src="javascript/logics/geo.js"></script>
+		
 		<script type="text/javascript" charset="utf-8" src="javascript/jquery/jquery-1.6.4.js"></script>
 		<script type="text/javascript" charset="utf-8" src="javascript/jquery/jquery.mobile-1.0rc1.js"></script>
 		
@@ -73,11 +75,14 @@
 			
 			function onBusStopsReady(busStops)
 			{
-				console.log(busStops);
+				console.log('Ready:'+busStops);
 				var ctaUtil = new cta.Utilities();
 				var ctaDOM = new cta.DOM();	
 				var closeStops = ctaUtil.dFindClosestBusStops(this.lat, this.lon, busStops, 5);
-				document.getElementById('busStopList').innerHTML = 	ctaDOM.renderBusStops(closeStops);	
+				console.log('Done:'+closeStops);
+				document.getElementById('busStopList').innerHTML = 	ctaDOM.renderBusStops(closeStops);
+				console.log(document.getElementById('busStopList').innerHTML);
+				//return false;	
 			};
 			
 			function onPositionSuccess(position) {

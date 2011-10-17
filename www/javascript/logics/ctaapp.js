@@ -21,7 +21,10 @@ cta.DOM = function() {};
 
 cta.DOM.prototype.renderBusStops = function(busStops){
 	var html = '<ul data-role="listview" class="ui-listview">';
-	html = '</ui>';
+	for(var i=0; i<busStops.length; i++){
+		html+= this.renderBusStopListItem(busStops[i]);
+	}
+	html = html + '</ui>';
 	return html;
 };
 
@@ -29,7 +32,7 @@ cta.DOM.prototype.renderBusStopListItem = function(busStop){
 	var html = '<li data-theme="c" class="ui-btn ui-li ui-btn-up-c"><div class="ui-btn-inner ui-li"><div class="ui-btn-text">';
 	html = html + '<a href="#" class="ui-link-inherit">';
 	html = html + busStop.stpnm;
-	html = html + " -&lt; " + busStop.distance + "mi";
+	html = html + " -&gt; " + busStop.distance + " mi";
 	html = html +'</a></div></div></li>';
 	return html;
 };
@@ -42,6 +45,7 @@ cta.Utilities = function () {};
 
 
 cta.Utilities.prototype.dFindClosestBusStops = function (lat, lon, busStops, num) {
+	console.log('calculate distance');
 	this.lat = lat;
 	this.lon = lon;
 	if(!(busStops instanceof Array)){
@@ -114,6 +118,7 @@ cta.DataAccess.prototype.populateDB = function () {
           function(transaction) {
           	transaction.executeSql('DROP TABLE IF EXISTS busstop', [], this.nullDataHandler, this.errorHandler);
             transaction.executeSql('CREATE TABLE IF NOT EXISTS busstop(stpid INTEGER NOT NULL PRIMARY KEY, stpnm TEXT NOT NULL DEFAULT "", lon REAL NOT NULL, lat REAL NOT NULL);', [], this.nullDataHandler, this.errorHandler); 
+            
             transaction.executeSql('insert into busstop (stpid,stpnm,lon,lat) VALUES (1,"Diversey & Lavergne",41.9315617, -87.7513614);', [], this.nullDataHandler, this.errorHandler); 
             transaction.executeSql('insert into busstop (stpid,stpnm,lon,lat) VALUES (2,"Diversey & Mobile",41.930968, -87.783355);', [], this.nullDataHandler, this.errorHandler); 
             transaction.executeSql('insert into busstop (stpid,stpnm,lon,lat) VALUES (3,"Diversey & Lawndale",41.931917, -87.7193907);', [], this.nullDataHandler, this.errorHandler); 
@@ -124,6 +129,7 @@ cta.DataAccess.prototype.populateDB = function () {
             transaction.executeSql('insert into busstop (stpid,stpnm,lon,lat) VALUES (8,"Diversey & Marmora",41.9312442, -87.773358);', [], this.nullDataHandler, this.errorHandler); 
             transaction.executeSql('insert into busstop (stpid,stpnm,lon,lat) VALUES (9,"Diversey & Natchez",41.930904, -87.788227);', [], this.nullDataHandler, this.errorHandler); 
             transaction.executeSql('insert into busstop (stpid,stpnm,lon,lat) VALUES (10,"Diversey & Neva Terminal",41.9310177, -87.8055732);', [], this.nullDataHandler, this.errorHandler); 
+			         
           }, this.errorHandler);
          this.isPopulated = true;
  
@@ -135,12 +141,22 @@ cta.DataAccess.prototype.populateDB = function () {
 
 cta.DataAccess.prototype.loadBusStops = function(callback){
 	console.log('start load');
-	this.loadBusStopsCallback = callback;
+	
 	this.ctadb.transaction(
 		function(transaction){
 			console.log('exec');
 			//transaction.executeSql('SELECT * FROM busstop',[],this.busStopDataHandler,this.errorHandler);
-			transaction.executeSql('SELECT * FROM busstop;',[],this.busStopDataHandler,this.errorHandler);
+			transaction.executeSql('SELECT * FROM busstop;',[],
+			function(transaction, results){
+				console.log('get data');
+				var busStops = [];
+				for(var i=0; i<results.rows.length; i++){
+					var row = results.rows.item(i);
+					busStops[i] = new cta.BusStop(row['stpid'],row['stpnm'],row['lat'],row['lon']);
+				}
+				callback(busStops);
+			},
+			this.errorHandler);
 		}, this.errorHandler);
 };
 
