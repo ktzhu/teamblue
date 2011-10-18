@@ -16,6 +16,7 @@
 		<script type="text/javascript" charset="utf-8" src="javascript/phonegap-1.0.0.js"></script>
 		<script type="text/javascript" charset="utf-8" src="javascript/logics/ctaapp.js"></script>
 		<script type="text/javascript" charset="utf-8" src="javascript/logics/geo.js"></script>
+		<script type="text/javascript" charset="utf-8" src="javascript/logics/populateStops.js"></script>
 		
 		<script type="text/javascript" charset="utf-8" src="javascript/jquery/jquery-1.6.4.js"></script>
 		<script type="text/javascript" charset="utf-8" src="javascript/jquery/jquery.mobile-1.0rc1.js"></script>
@@ -66,13 +67,10 @@
 		        // do your thing!
 				//navigator.notification.alert("PhoneGap "+ device.phonegap +" is working on "+ device.name)
 				//navigator.geolocation.getCurrentPosition(onPositionSuccess, onError);
-				this.lat = 40;
-				this.lon = 80;
-				
+							
 				var ctaDataAccess = new cta.DataAccess();
 				console.log(ctaDataAccess.ctadb);
-				ctaDataAccess.loadBusStops(onBusStopsReady);
-				
+				ctaDataAccess.loadBusStops(onBusStopsReady);				
 			};
 			
 			function onBusStopsReady(busStops)
@@ -80,7 +78,7 @@
 				console.log('Ready:'+busStops);
 				var ctaUtil = new cta.Utilities();
 				var ctaDOM = new cta.DOM();	
-				var closeStops = ctaUtil.dFindClosestBusStops(this.lat, this.lon, busStops, 5);
+				var closeStops = ctaUtil.dFindClosestBusStops(41.935008, -87.64914, busStops, 5);
 				console.log('Done:'+closeStops);
 				document.getElementById('busStopList').innerHTML = 	ctaDOM.renderBusStops(closeStops);
 				console.log(document.getElementById('busStopList').innerHTML);

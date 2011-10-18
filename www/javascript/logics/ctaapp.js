@@ -48,6 +48,7 @@ cta.Utilities.prototype.dFindClosestBusStops = function (lat, lon, busStops, num
 	console.log('calculate distance');
 	this.lat = lat;
 	this.lon = lon;
+
 	if(!(busStops instanceof Array)){
 		throw new Error("busStops is not an array.");
 	}
@@ -55,7 +56,16 @@ cta.Utilities.prototype.dFindClosestBusStops = function (lat, lon, busStops, num
 		throw new Error("num should be a number, and it should be positive integer")
 	}
 	else{
-		busStops.sort(this.compareBusStops);
+			
+		var geo = new Geo();
+		busStops.sort(function(a, b) {
+			var d1 = geo.distance(lat, lon, a.lat, a.lon);
+			var d2 = geo.distance(lat, lon, b.lat, b.lon);				  
+			a.distance = d1;
+			b.distance = d2;
+			return (d1 - d2);
+		});
+		
 		var a = [];
 		for(var i=0; i<num; i=i+1){
 			a[i] = busStops[i];
@@ -65,6 +75,7 @@ cta.Utilities.prototype.dFindClosestBusStops = function (lat, lon, busStops, num
   	
 };
 
+/*
 cta.Utilities.prototype.compareBusStops = function (b1, b2) {
   var lat = this.lat || 0;
   var lon = this.lat || 0;
@@ -75,6 +86,7 @@ cta.Utilities.prototype.compareBusStops = function (b1, b2) {
   b2.distance = d2;
   return (d1 - d2);
 }
+*/
 
 /*
  * CTA Data Access
@@ -91,7 +103,7 @@ cta.DataAccess = function () {
 		this.populateDB();
 		window.localStorage.setItem("CTADatabaseVersion", this.dbVersion);
 	}
-	this.populateDB();
+	//this.populateDB();
 };
 
 cta.DataAccess.prototype.initDB = function () {
@@ -111,7 +123,9 @@ cta.DataAccess.prototype.initDB = function () {
       } 
     };
 
+/*
 cta.DataAccess.prototype.populateDB = function () {
+
 	 try {
  		console.log('populate');
         this.ctadb.transaction(
@@ -129,7 +143,7 @@ cta.DataAccess.prototype.populateDB = function () {
             transaction.executeSql('insert into busstop (stpid,stpnm,lon,lat) VALUES (8,"Diversey & Marmora",41.9312442, -87.773358);', [], this.nullDataHandler, this.errorHandler); 
             transaction.executeSql('insert into busstop (stpid,stpnm,lon,lat) VALUES (9,"Diversey & Natchez",41.930904, -87.788227);', [], this.nullDataHandler, this.errorHandler); 
             transaction.executeSql('insert into busstop (stpid,stpnm,lon,lat) VALUES (10,"Diversey & Neva Terminal",41.9310177, -87.8055732);', [], this.nullDataHandler, this.errorHandler); 
-			         
+					   
           }, this.errorHandler);
          this.isPopulated = true;
  
@@ -138,6 +152,7 @@ cta.DataAccess.prototype.populateDB = function () {
         return;
       }
 };
+*/
 
 cta.DataAccess.prototype.loadBusStops = function(callback){
 	console.log('start load');
