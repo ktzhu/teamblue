@@ -14,6 +14,8 @@ public class BlueTestListener {
 		//while(true)
 		BlueTestConnection testClient =	new BlueTestConnection(ss.accept(), portNum);
 		testClient.start();
+		testClient.setPriority(Thread.MAX_PRIORITY);
+		Thread.yield();
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -63,7 +65,7 @@ class BlueTestConnection extends Thread {
 					}
 					if(i>11)
 						result = result+request;
-						//System.out.println(request);
+						System.out.println(request);
 					i++;
 				}
 				//System.out.println("END");
