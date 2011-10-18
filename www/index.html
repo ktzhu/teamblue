@@ -62,7 +62,7 @@
 			function onDeviceReady()
 			{
 				// When we commit our code to Git, we must uncomment the following line!
-		        window.location = "jasmine/SpecRunner.html";
+		        // window.location = "jasmine/SpecRunner.html";
 				
 		        // do your thing!
 				//navigator.notification.alert("PhoneGap "+ device.phonegap +" is working on "+ device.name)
@@ -116,15 +116,29 @@
   <body onload="onBodyLoad();">	  
 	  <div data-role="page" id="home">  
 	    <div data-role="header">     
-	      <h1>Diversey #76</h1>                     
-	    </div>         
-	    <div data-role="content" class="ui-content" role="main">
-	      <div class="content-primary" id="busStopList">
-			
-		   </div>
-	      
-	   	</div>     
+	      <h1>Choose your bus:</h1>
+	    </div>
+        
+        <ul data-role="listview" class="ui-listview">
+            <li class="ui-btn ui-btn-icn-right">
+                <a href="#buslanding">
+                    <h3 class="ui-li-heading">Diversey #76</h3>
+                    <p class="ui-li-desc">Diversey/Harlem <strong>EAST</strong> to Nature Museum</p>
+                    <p class="ui-li-desc">Nature Museum <strong>WEST</strong> to Diversey/Harlem</p>
+                </a>
+            </li>
+        </div>
 	  </div>
+      
+      <div data-role="page" id="buslanding">
+          <div data-role="header">
+              <h1>Diversey #76</h1>
+          </div>
+          
+          <div data-role="content" class="ui-content" role="main">
+              <div class="content-primary" id="busStopList"></div>
+          </div>
+      </div>
   </body>
   
 </html>
