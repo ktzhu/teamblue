@@ -63,7 +63,7 @@ class BlueTestConnection extends Thread {
 					}
 					if(i>11)
 						result = result+request;
-						System.out.println(request);
+						//System.out.println(request);
 					i++;
 				}
 				//System.out.println("END");

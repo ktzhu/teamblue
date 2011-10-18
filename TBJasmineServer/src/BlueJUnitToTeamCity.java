@@ -67,7 +67,7 @@ public class BlueJUnitToTeamCity {
 		        		   this.printTeamCityTestCase(testCase);
 		        	   }
 		        	   
-		        	   System.out.println("##teamcity[testFinished name='"+ testSuiteName +"' duration='"+ second*1000 +"']");
+		        	   System.out.println("##teamcity[testSuiteFinished name='"+ testSuiteName +"' duration='"+ second*1000 +"']");
 		        
 	           		}
 	           }
