@@ -45,7 +45,7 @@ cta.Utilities = function () {};
 
 
 cta.Utilities.prototype.dFindClosestBusStops = function (lat, lon, busStops, num) {
-	console.log('calculate distance');
+	//console.log('calculate distance');
 	this.lat = lat;
 	this.lon = lon;
 
@@ -155,15 +155,15 @@ cta.DataAccess.prototype.populateDB = function () {
 */
 
 cta.DataAccess.prototype.loadBusStops = function(callback){
-	console.log('start load');
+	//console.log('start load');
 	
 	this.ctadb.transaction(
 		function(transaction){
-			console.log('exec');
+			//console.log('exec');
 			//transaction.executeSql('SELECT * FROM busstop',[],this.busStopDataHandler,this.errorHandler);
 			transaction.executeSql('SELECT * FROM busstop;',[],
 			function(transaction, results){
-				console.log('get data');
+				//console.log('get data');
 				var busStops = [];
 				for(var i=0; i<results.rows.length; i++){
 					var row = results.rows.item(i);
@@ -176,7 +176,7 @@ cta.DataAccess.prototype.loadBusStops = function(callback){
 };
 
 cta.DataAccess.prototype.busStopDataHandler = function(transaction,results){
-	console.log('get data');
+	//console.log('get data');
 	var busStops = [];
 	for(var i=0; i<results.rows.length; i++){
 		var row = results.rows.item(i);
