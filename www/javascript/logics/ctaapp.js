@@ -59,8 +59,9 @@ cta.Utilities.prototype.dFindClosestBusStops = function (lat, lon, busStops, num
 			
 		var geo = new Geo();
 		busStops.sort(function(a, b) {
-			var d1 = geo.distance(lat, lon, a.lat, a.lon);
-			var d2 = geo.distance(lat, lon, b.lat, b.lon);				  
+                     // console.log(a.lat+" "+ a.lon);
+			var d1 = geo.distance(lat, lon, a.lat, a.lon, "mile");
+			var d2 = geo.distance(lat, lon, b.lat, b.lon, "mile");				  
 			a.distance = d1;
 			b.distance = d2;
 			return (d1 - d2);
@@ -168,22 +169,12 @@ cta.DataAccess.prototype.loadBusStops = function(callback){
 				for(var i=0; i<results.rows.length; i++){
 					var row = results.rows.item(i);
 					busStops[i] = new cta.BusStop(row['stpid'],row['stpnm'],row['lat'],row['lon']);
+                                   
 				}
 				callback(busStops);
 			},
 			this.errorHandler);
 		}, this.errorHandler);
-};
-
-cta.DataAccess.prototype.busStopDataHandler = function(transaction,results){
-	//console.log('get data');
-	var busStops = [];
-	for(var i=0; i<results.rows.length; i++){
-		var row = results.rows.item(i);
-		busStops[i] = new cta.BusStop(row['stpid'],row['stpnm'],row['lat'],row['lon']);
-	}
-	this.loadBusStopsCallback(busStops);
-	this.loadBusStopsCallback = null;
 };
 
 // db error handler - prevents the rest of the transaction going ahead on failure
