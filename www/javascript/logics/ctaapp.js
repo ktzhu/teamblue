@@ -225,8 +225,7 @@ cta.DataAccess.prototype.loadBusStops = function(callback, route){
 // db error handler - prevents the rest of the transaction going ahead on failure
 cta.DataAccess.prototype.errorHandler = function (error) { 
       // returns true to rollback the transaction
-      console.log(error.message);
-	alert(error.message);
+	console.log(error.message);
 	return true;  
 }; 
  
