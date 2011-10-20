@@ -70,11 +70,15 @@
 				//navigator.notification.alert("PhoneGap "+ device.phonegap +" is working on "+ device.name)
 				//navigator.geolocation.getCurrentPosition(onPositionSuccess, onError);
 							
+				//loadStops();
+			};
+			
+			function loadStops(routeName, routeNum) {
+				$('#routeName').html(routeName);
 				var ctaDataAccess = new cta.DataAccess();
 				console.log(ctaDataAccess.ctadb);
-				ctaDataAccess.loadBusStops(onBusStopsReady);
-                 
-			};
+				ctaDataAccess.loadBusStops(onBusStopsReady, routeNum);
+			}
 			
 			function onBusStopsReady(busStops)
 			{
@@ -82,29 +86,11 @@
 				var ctaUtil = new cta.Utilities();
 				var ctaDOM = new cta.DOM();	
                 console.log(this.lat + " " + this.lon);
-				var closeStops = ctaUtil.dFindClosestBusStops(41.935008, -87.64914, busStops, 5);
+				var closeStops = ctaUtil.dFindClosestBusStops(41.93263, -87.656629, busStops, 5);
 				//console.log('Done:'+closeStops);
 				document.getElementById('busStopList').innerHTML = 	ctaDOM.renderBusStops(closeStops);
 				//console.log(document.getElementById('busStopList').innerHTML);
 				//return false;	
-			};
-			
-			function onPositionSuccess(position) {
-				lat = position.coords.latitude;
-				lon = position.coords.longitude;
-                
-				var ctaDataAccess = new cta.DataAccess();
-				ctaDataAccess.loadBusStops(onBusStopsReady);
-				/*
-    alert('Latitude: '          + position.coords.latitude          + '\n' +
-          'Longitude: '         + position.coords.longitude         + '\n' +
-          'Altitude: '          + position.coords.altitude          + '\n' +
-          'Accuracy: '          + position.coords.accuracy          + '\n' +
-          'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-          'Heading: '           + position.coords.heading           + '\n' +
-          'Speed: '             + position.coords.speed             + '\n' +
-          'Timestamp: '         + new Date(position.timestamp)      + '\n');
-          */
 			};
 
 // onError Callback receives a PositionError object
@@ -126,28 +112,20 @@
         
         <ul data-role="listview" class="ui-listview">
             <li class="ui-btn ui-btn-icn-right">
-                <a href="#bus76">
+                <a onClick="loadStops('76 Diversey', 76);" href="#routeView">
                     <h3 class="ui-li-heading">76 Diversey</h3>
-                    <!--
-                    <p class="ui-li-desc">Diversey/Harlem <strong>EAST</strong> to Nature Museum</p>
-                    <p class="ui-li-desc">Nature Museum <strong>WEST</strong> to Diversey/Harlem</p>
-                    !-->
                 </a>
             </li>
             
             <li class="ui-btn ui-btn-icn-right">
-                <a href="#bus201">
+                <a onClick="loadStops('201 Central/Ridge', 201);" href="#routeView">
                     <h3 class="ui-li-heading">201 Central/Ridge</h3>
-                    <!--
-                    <p class="ui-li-desc">Howard <strong>NORTH</strong> to Old Orchard Mall</p>
-                    <p class="ui-li-desc">Old Orchard Mall <strong>SOUTH</strong> to Howard</p>
-                    !-->
                 </a>
             </li>
         </div>
 	  </div>
       
-      <div data-role="page" id="bus76">
+      <div data-role="page" id="routeView">
           <div data-role="header">
               <a href="#home" data-icon="home" data-iconos="notext" data-direction="reverse" class="ui-btn-right jqm-home ui-btn ui-btn-icon-notext ui-btn-corner-all ui-shadow ui-btn-down-f ui-btn-up-f" title="Home">
                   <span class="ui-btn-inner ui-btn-corner-all">
@@ -155,7 +133,7 @@
                       <span class="ui-icon ui-icon-home ui-icon-shadow"></span>
                   </span>
               </a>
-              <h1>76 Diversey</h1>
+              <h1 id="routeName">Route Name</h1>
           </div>
           
           <div data-role="content" class="ui-content" role="main">
@@ -163,21 +141,6 @@
           </div>
       </div>
       
-      <div data-role="page" id="bus201">
-          <div data-role="header">
-              <a href="#home" data-icon="home" data-iconos="notext" data-direction="reverse" class="ui-btn-right jqm-home ui-btn ui-btn-icon-notext ui-btn-corner-all ui-shadow ui-btn-down-f ui-btn-up-f" title="Home">
-                  <span class="ui-btn-inner ui-btn-corner-all">
-                      <span class="ui-btn-text">Home</span>
-                      <span class="ui-icon ui-icon-home ui-icon-shadow"></span>
-                  </span>
-              </a>
-              <h1>201 Central/Ridge</h1>
-          </div>
-          
-          <div data-role="content" class="ui-content" role="main">
-              No information yet. Hang tight.
-          </div>
-      </div>
   </body>
   
 </html>

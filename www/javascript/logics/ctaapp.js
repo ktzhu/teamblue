@@ -4,13 +4,14 @@ var cta = cta || {};
 /*
  * CTA Bus Stop
  */
-cta.BusStop = function (stpid, stpnm, lat, lon) {
+cta.BusStop = function (stpid, stpnm, lat, lon, routes) {
 	this.stpid = stpid;
 	this.stpnm = stpnm;
 	this.lat = lat;
 	this.lon = lon;
 	this.distance = 0;
 	this.predictTime = 0;
+	this.routes = routes;
 };
 
 /*
@@ -32,6 +33,7 @@ cta.DOM.prototype.renderBusStopListItem = function(busStop){
 	var html = '<li data-theme="c" class="ui-btn ui-li ui-btn-up-c"><div class="ui-btn-inner ui-li"><div class="ui-btn-text">';
 	html = html + '<a href="#" class="ui-link-inherit">';
 	html = html + busStop.stpnm;
+	html = html + ' (' + busStop.routes.join(', ') + ')';
 	html = html + " -&gt; " + busStop.distance + " mi";
 	html = html +'</a></div></div></li>';
 	return html;
@@ -155,7 +157,7 @@ cta.DataAccess.prototype.populateDB = function () {
 };
 */
 
-cta.DataAccess.prototype.loadBusStops = function(callback){
+cta.DataAccess.prototype.loadBusStops = function(callback, route){
 	//console.log('start load');
 	
 	this.ctadb.transaction(
@@ -168,8 +170,10 @@ cta.DataAccess.prototype.loadBusStops = function(callback){
 				var busStops = [];
 				for(var i=0; i<results.rows.length; i++){
 					var row = results.rows.item(i);
-					busStops[i] = new cta.BusStop(row['stpid'],row['stpnm'],row['lat'],row['lon']);
-                                   
+					newStop = new cta.BusStop(row['stpid'],row['stpnm'],row['lat'],row['lon'],row['routes'].split('|'));
+					if (route == newStop.routes || $.inArray(route, newStop.routes) == 0) {
+						busStops[i] = newStop;
+					}
 				}
 				callback(busStops);
 			},
