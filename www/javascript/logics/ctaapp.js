@@ -14,11 +14,34 @@ cta.BusStop = function (stpid, stpnm, lat, lon, routes) {
 	this.routes = routes;
 };
 
+cta.Route = function(id, name) {
+	this.id = id;
+	this.name = name;
+	
+	this.renderListItem = function() {
+		var html = "<li class=\"ui-btn ui-btn-icn-right ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-down-c ui-btn-up-c\" data-theme=\"c\">";
+		html += "<div class=\"ui-btn-inner ui-li\">";
+		html += "<div class=\"ui-btn-text\">";
+		html += "<a onClick=\"loadStops('" + this.name + "', " + this.id + ");\" href=\"#routeView\" class=\"ui-link-inherit\">";
+		html += "<h3 class=\"ui-li-heading\">" + this.id + " " + this.name + "</h3>";
+		html += "</a></div><span class=\"ui-icon ui-icon-arrow-r ui-icon-shadow\"></span></div></li>";
+		return html;
+	}
+};
+
 /*
  * CTA DOM
  * contains all functions for rendering html interface from data
  */
 cta.DOM = function() {};
+
+cta.DOM.prototype.renderRoutes = function(routes) {
+	var html = '';
+	for (i in routes) {
+		html += routes[i].renderListItem();
+	}
+	return html;
+};
 
 cta.DOM.prototype.renderBusStops = function(busStops){
 	var html = '<ul data-role="listview" class="ui-listview">';
@@ -104,6 +127,7 @@ cta.DataAccess = function () {
 	//console.log('db: '+storedDBVersion);
 	if(typeof storedDBVersion === 'undefined' || storedDBVersion == null){
 		this.populateDB();
+		this.populateDBRoutes();
 		window.localStorage.setItem("CTADatabaseVersion", this.dbVersion);
 	}
 	//this.populateDB();
@@ -157,6 +181,23 @@ cta.DataAccess.prototype.populateDB = function () {
 };
 */
 
+cta.DataAccess.prototype.loadRoutes = function(callback) {
+	this.ctadb.transaction(
+		function(transaction) {
+			transaction.executeSql('SELECT * FROM route;', [], function(transaction, results) {
+												  
+				var routes = new Array();
+				for(var i = 0; i < results.rows.length; i++) {
+					routes.push(new cta.Route(results.rows.item(i)['id'], results.rows.item(i)['name']));
+				}
+				callback(routes);
+					
+			},
+			this.errorHandler);
+		},
+		this.errorHandler);
+};
+
 cta.DataAccess.prototype.loadBusStops = function(callback, route){
 	//console.log('start load');
 	
@@ -185,6 +226,7 @@ cta.DataAccess.prototype.loadBusStops = function(callback, route){
 cta.DataAccess.prototype.errorHandler = function (error) { 
       // returns true to rollback the transaction
       console.log(error.message);
+	alert(error.message);
 	return true;  
 }; 
  

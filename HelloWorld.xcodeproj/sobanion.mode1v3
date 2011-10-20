@@ -299,7 +299,7 @@
 							<real>186</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>-2 59 1234 969 0 0 1680 1028 </string>
+						<string>0 59 1264 969 0 0 1680 1028 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -329,7 +329,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>FCBA230C145072B300066F1C</string>
+										<string>FCBA24111450D5B700066F1C</string>
 										<key>history</key>
 										<array>
 											<string>FC553F7B144CC99700EDC865</string>
@@ -342,10 +342,11 @@
 											<string>FCE3D499144DCF4D000D1152</string>
 											<string>FCE3D553144DDAFC000D1152</string>
 											<string>FCBA2261144F4EB100066F1C</string>
-											<string>FCBA2263144F4EB100066F1C</string>
-											<string>FCBA22BB14506BC700066F1C</string>
-											<string>FCBA22EA14506FC800066F1C</string>
-											<string>FCBA22EB14506FC800066F1C</string>
+											<string>FCBA23FA1450D0C600066F1C</string>
+											<string>FCBA23FC1450D0C600066F1C</string>
+											<string>FCBA24081450D56200066F1C</string>
+											<string>FCBA24091450D56200066F1C</string>
+											<string>FCBA240A1450D56200066F1C</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -357,14 +358,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1026, 662}}</string>
+								<string>{{0, 0}, {1056, 869}}</string>
 								<key>RubberWindowFrame</key>
-								<string>-2 59 1234 969 0 0 1680 1028 </string>
+								<string>0 59 1264 969 0 0 1680 1028 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>662pt</string>
+							<string>869pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -377,18 +378,18 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 667}, {1026, 261}}</string>
+								<string>{{0, 874}, {1056, 54}}</string>
 								<key>RubberWindowFrame</key>
-								<string>-2 59 1234 969 0 0 1680 1028 </string>
+								<string>0 59 1264 969 0 0 1680 1028 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>261pt</string>
+							<string>54pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
-					<string>1026pt</string>
+					<string>1056pt</string>
 				</dict>
 			</array>
 			<key>Name</key>
@@ -551,7 +552,7 @@
 		<string>/Users/sobanion/classes/fall2011/agile/code/teamblue/HelloWorld.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>-2 59 1234 969 0 0 1680 1028 </string>
+	<string>0 59 1264 969 0 0 1680 1028 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -589,6 +590,8 @@
 							<string>218pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>

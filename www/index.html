@@ -71,13 +71,26 @@
 				//navigator.geolocation.getCurrentPosition(onPositionSuccess, onError);
 							
 				//loadStops();
+				
+				loadRoutes();
 			};
+			
+			function loadRoutes() {
+				var ctaDataAccess = new cta.DataAccess();
+				ctaDataAccess.loadRoutes(displayRoutes);
+			}
+			
+			function displayRoutes(routes) {
+				var ctaDOM = new cta.DOM();
+				$('#routeList').html(ctaDOM.renderRoutes(routes));
+			}
 			
 			function loadStops(routeName, routeNum) {
 				$('#routeName').html(routeName);
 				var ctaDataAccess = new cta.DataAccess();
 				console.log(ctaDataAccess.ctadb);
 				ctaDataAccess.loadBusStops(onBusStopsReady, routeNum);
+				ctaDataAccess.loadRoutes(onRoutesReady);
 			}
 			
 			function onBusStopsReady(busStops)
@@ -106,11 +119,12 @@
   
   <body onload="onBodyLoad();">	  
 	  <div data-role="page" id="home">  
-	    <div data-role="header">     
+	    
+		<div data-role="header">     
 	      <h1>Choose your bus:</h1>
 	    </div>
         
-        <ul data-role="listview" class="ui-listview">
+        <ul data-role="listview" class="ui-listview" id="routeList">
             <li class="ui-btn ui-btn-icn-right">
                 <a onClick="loadStops('76 Diversey', 76);" href="#routeView">
                     <h3 class="ui-li-heading">76 Diversey</h3>
@@ -122,7 +136,8 @@
                     <h3 class="ui-li-heading">201 Central/Ridge</h3>
                 </a>
             </li>
-        </div>
+		</ul>
+        
 	  </div>
       
       <div data-role="page" id="routeView">
