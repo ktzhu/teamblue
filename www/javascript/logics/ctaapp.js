@@ -58,7 +58,7 @@ cta.DOM.prototype.renderBusStopListItem = function(busStop){
 	html = html + '<a href="#" class="ui-link-inherit">';
 	html = html + busStop.stpnm;
 	html = html + ' (' + busStop.routes.join(', ') + ')';
-	html = html + " -&gt; " + busStop.distance + " mi";
+	html = html + " &nbsp&nbsp; " + Math.round(busStop.distance*100)/100 + " mi";
 	html = html +'</a></div></div></li>';
 	return html;
 };
