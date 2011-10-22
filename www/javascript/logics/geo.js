@@ -7,15 +7,24 @@ Geo.prototype.distance = function(x1, y1, x2, y2) {
 };
 */
 
-Geo.prototype.distance = function(lat1, lon1, lat2, lon2, unit) {
+Geo.prototype.distance = function(lat1, lon1, lat2, lon2) {
     //console.log(lat1 +" "+ lon1);
     //console.log(lat2 +" "+ lon2);
-    
-    try{
-    var R = 6371; // Radius of the earth in km
-    if(unit == "m" || unit == "miles" || unit == "mile"){
-        R = 3958.7558657440545;
+    if(isNaN(lat1) || isNaN(lon1) || isNaN(lat2) || isNaN(lon2)) {
+        return 0;
     }
+    var d = 0;
+    var unit = arguments[4] || "km";
+    try{
+        if (unit == "km" || unit == "kilometers" || unit == "kilometer") {
+            var R = 6371; // Radius of the earth in km
+        }
+        else if(unit == "m" || unit == "miles" || unit == "mile"){
+            R = 3958.7558657440545;
+        }
+        else{
+            return 0;
+        }
         var dLat = this.toRad(lat2-lat1);
         var dLon = this.toRad(lon2-lon1); 
         var a = Math.sin(dLat/2) * Math.sin(dLat/2) +

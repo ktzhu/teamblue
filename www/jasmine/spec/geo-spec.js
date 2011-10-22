@@ -24,4 +24,25 @@ describe("Geo Tests", function() {
                      expect(geo.walkingTime("ten")).toEqual(0);
                      });
                   });
+         describe("When calculating distance, using Google Map as reference for distance and allowed to have some small error", function () {
+                  it("should get zero distance on the same coordinate", function () {
+                     expect(geo.distance(41.93263, -87.656629,41.93263, -87.656629)).toEqual(0);
+                     });
+                  it("should return distance in km by default or specified with km", function () {
+                     expect(Math.round(geo.distance(42.0426, -87.6749, 42.0412, -87.6822)*100)/100).toEqual(0.62);
+                     expect(Math.round(geo.distance(42.0426, -87.6749, 42.0412, -87.6822, "km")*100)/100).toEqual(0.62);
+                     expect(Math.round(geo.distance(42.0426, -87.6749, 42.0412, -87.6822, "kilometer")*100)/100).toEqual(0.62);
+                     expect(Math.round(geo.distance(42.0426, -87.6749, 42.0412, -87.6822, "kilometers")*100)/100).toEqual(0.62);
+                     });
+                  it("should return distance in miles when specified with various format", function () {
+                     expect(Math.round(geo.distance(42.0426, -87.6749, 42.0412, -87.6822, "m")*100)/100).toEqual(0.39);
+                     expect(Math.round(geo.distance(42.0426, -87.6749, 42.0412, -87.6822, "mile")*100)/100).toEqual(0.39);
+                     expect(Math.round(geo.distance(42.0426, -87.6749, 42.0412, -87.6822, "miles")*100)/100).toEqual(0.39);
+                     });
+                  it("should return 0 when given wrong parameters", function () {
+                     expect(Math.round(geo.distance(42.0426, -87.6749, 42.0412, -87.6822, "blue")*100)/100).toEqual(0);
+                     expect(Math.round(geo.distance(42.0426, -87.6749, 42.0412, "Hey")*100)/100).toEqual(0);
+                     expect(Math.round(geo.distance("Up", -87.6749, 42.0412, -87.6822, "miles")*100)/100).toEqual(0);
+                     });
+                  });
          });
