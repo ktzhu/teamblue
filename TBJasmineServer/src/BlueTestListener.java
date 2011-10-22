@@ -22,8 +22,9 @@ public class BlueTestListener {
 			e.printStackTrace();
 		}
 		Thread.yield();
-		
-		if(testClient.isAllPassed){
+		BlueJUnitToTeamCity report = new BlueJUnitToTeamCity();
+		report.printTeamCityTestReport(testClient.result);
+		if(report.numFailuresOcc<=0){
 			System.out.println("Awesome, nothing breaks");
 			System.exit(0);
 		}
@@ -78,9 +79,8 @@ class BlueTestConnection extends Thread {
 				client.close();
 				connection = false;
 				
-				BlueJUnitToTeamCity report = new BlueJUnitToTeamCity();
-				report.printTeamCityTestReport(result);
-				if(report.numFailuresOcc>0) {isAllPassed = false;}
+				
+				//if(report.numFailuresOcc>0) {isAllPassed = false;}
 				//System.out.println("Close");
 			}
 			

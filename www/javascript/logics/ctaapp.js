@@ -43,6 +43,7 @@ cta.DOM.prototype.renderRoutes = function(routes) {
 	return html;
 };
 
+
 cta.DOM.prototype.renderBusStops = function(busStops){
 	var html = '<ul data-role="listview" class="ui-listview">';
 	for(var i=0; i<busStops.length; i++){
