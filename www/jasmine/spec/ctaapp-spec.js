@@ -15,6 +15,17 @@ describe("CTA Tests", function() {
 			expect(ctaDataAccess.ctadb).not.toEqual(null);
 			//console.log(ctaDataAccess.ctadb);
 		});
+             
+             it("should be able to load bus stops data", function() {
+                ctaDataAccess.loadBusStops("76");
+                waitsFor(function() {
+                         return ctaDataAccess.dbTransactionComplete();
+                         }, "loadBusStops never completed", 10000);
+                runs(function () {
+                     expect(ctaDataAccess.transactionResults.length).not.toEqual(0);
+                     });
+                
+                });
 	});
          
          describe("When getting closest bus stops", function () {

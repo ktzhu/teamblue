@@ -89,7 +89,7 @@
 				$('#routeName').html(routeName);
 				var ctaDataAccess = new cta.DataAccess();
 				console.log(ctaDataAccess.ctadb);
-				ctaDataAccess.loadBusStops(onBusStopsReady, routeNum);
+				ctaDataAccess.loadBusStops(routeNum, onBusStopsReady);
 				ctaDataAccess.loadRoutes(onRoutesReady);
 			}
 			

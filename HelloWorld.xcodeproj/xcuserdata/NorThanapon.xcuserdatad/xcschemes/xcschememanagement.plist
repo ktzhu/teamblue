@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>HelloWorld copy.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>HelloWorld.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -23,6 +28,11 @@
 			<true/>
 		</dict>
 		<key>C89E12E2143783320082D7E4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C8B1029F14528BE4008E9ABD</key>
 		<dict>
 			<key>primary</key>
 			<true/>

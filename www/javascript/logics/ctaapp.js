@@ -167,7 +167,7 @@ cta.DataAccess.prototype.populateDB = function () {
 
 
 cta.DataAccess.prototype.loadRoutes = function(callback) {
-	this.ctadb.transaction(
+        this.ctadb.transaction(
 		function(transaction) {
 			transaction.executeSql('SELECT * FROM route;', [], function(transaction, results) {
 												  
@@ -183,9 +183,9 @@ cta.DataAccess.prototype.loadRoutes = function(callback) {
 		this.errorHandler);
 };
 
-cta.DataAccess.prototype.loadBusStops = function(callback, route){
-	//console.log('start load');
-	
+cta.DataAccess.prototype.loadBusStops = function(route, callback){
+    callback = callback || this.dbTransactionComplete;
+    var self = this;
 	this.ctadb.transaction(
 		function(transaction){
 			//console.log('exec');
@@ -200,11 +200,29 @@ cta.DataAccess.prototype.loadBusStops = function(callback, route){
 					if (route == newStop.routes || $.inArray(route, newStop.routes) == 0) {
 						busStops[i] = newStop;
 					}
-				}
-				callback(busStops);
-			},
+                }
+                callback(busStops, self);
+            },
 			this.errorHandler);
 		}, this.errorHandler);
+};
+
+//Default call back, do nothing but return true
+cta.DataAccess.prototype.dbTransactionComplete = function (trResults, self) {
+    //console.log(trResults);
+    
+    if (typeof trResults === 'undefined'){
+        if(typeof this.transactionResults === 'undefined'){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    else {
+        self.transactionResults = trResults;
+        return true;  
+    }
 };
 
 // db error handler - prevents the rest of the transaction going ahead on failure
