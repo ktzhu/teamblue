@@ -1,7 +1,7 @@
-cta.DataAccess.prototype.populateDB = function () {
+cta.DataAccess.prototype.populateDBStops = function () {
 
 	try {
- 		console.log('populate');
+ 		//console.log('populate');
         this.ctadb.transaction(
 			function(transaction) {
 				transaction.executeSql('DROP TABLE IF EXISTS busstop', [], this.nullDataHandler, this.errorHandler);
@@ -14,7 +14,7 @@ cta.DataAccess.prototype.populateDB = function () {
 			}
 							   
 			}, this.errorHandler);
-		this.isPopulated = true;
+		//this.isPopulated = true;
 	} catch(e) {
         console.log(e.message);
         return;

@@ -127,7 +127,6 @@ cta.DataAccess = function () {
 	//console.log('db: '+storedDBVersion);
 	if(typeof storedDBVersion === 'undefined' || storedDBVersion == null){
 		this.populateDB();
-		this.populateDBRoutes();
 		window.localStorage.setItem("CTADatabaseVersion", this.dbVersion);
 	}
 	//this.populateDB();
@@ -150,28 +149,13 @@ cta.DataAccess.prototype.initDB = function () {
       } 
     };
 
-/*
+
 cta.DataAccess.prototype.populateDB = function () {
 
 	 try {
- 		console.log('populate');
-        this.ctadb.transaction(
-          function(transaction) {
-          	transaction.executeSql('DROP TABLE IF EXISTS busstop', [], this.nullDataHandler, this.errorHandler);
-            transaction.executeSql('CREATE TABLE IF NOT EXISTS busstop(stpid INTEGER NOT NULL PRIMARY KEY, stpnm TEXT NOT NULL DEFAULT "", lon REAL NOT NULL, lat REAL NOT NULL);', [], this.nullDataHandler, this.errorHandler); 
-            
-            transaction.executeSql('insert into busstop (stpid,stpnm,lon,lat) VALUES (1,"Diversey & Lavergne",41.9315617, -87.7513614);', [], this.nullDataHandler, this.errorHandler); 
-            transaction.executeSql('insert into busstop (stpid,stpnm,lon,lat) VALUES (2,"Diversey & Mobile",41.930968, -87.783355);', [], this.nullDataHandler, this.errorHandler); 
-            transaction.executeSql('insert into busstop (stpid,stpnm,lon,lat) VALUES (3,"Diversey & Lawndale",41.931917, -87.7193907);', [], this.nullDataHandler, this.errorHandler); 
-            transaction.executeSql('insert into busstop (stpid,stpnm,lon,lat) VALUES (4,"Diversey & Lakewood",41.9325963, -87.6609542);', [], this.nullDataHandler, this.errorHandler); 
-            transaction.executeSql('insert into busstop (stpid,stpnm,lon,lat) VALUES (5,"Diversey & Pine Grove",41.9328225, -87.6410552);', [], this.nullDataHandler, this.errorHandler); 
-            transaction.executeSql('insert into busstop (stpid,stpnm,lon,lat) VALUES (6,"Diversey & Wolcott",41.9322599, -87.6758637);', [], this.nullDataHandler, this.errorHandler); 
-            transaction.executeSql('insert into busstop (stpid,stpnm,lon,lat) VALUES (7,"Diversey & Newland",41.930869, -87.799051);', [], this.nullDataHandler, this.errorHandler); 
-            transaction.executeSql('insert into busstop (stpid,stpnm,lon,lat) VALUES (8,"Diversey & Marmora",41.9312442, -87.773358);', [], this.nullDataHandler, this.errorHandler); 
-            transaction.executeSql('insert into busstop (stpid,stpnm,lon,lat) VALUES (9,"Diversey & Natchez",41.930904, -87.788227);', [], this.nullDataHandler, this.errorHandler); 
-            transaction.executeSql('insert into busstop (stpid,stpnm,lon,lat) VALUES (10,"Diversey & Neva Terminal",41.9310177, -87.8055732);', [], this.nullDataHandler, this.errorHandler); 
-					   
-          }, this.errorHandler);
+         this.populateDBRoutes();
+         this.populateDBStops();
+         console.log('populated');
          this.isPopulated = true;
  
       } catch(e) {
@@ -179,7 +163,7 @@ cta.DataAccess.prototype.populateDB = function () {
         return;
       }
 };
-*/
+
 
 cta.DataAccess.prototype.loadRoutes = function(callback) {
 	this.ctadb.transaction(

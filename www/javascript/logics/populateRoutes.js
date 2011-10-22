@@ -1,7 +1,7 @@
 cta.DataAccess.prototype.populateDBRoutes = function () {
 	
 	try {
-		console.log('populate');
+		//console.log('populate');
         this.ctadb.transaction(
 			function(transaction) {
 				transaction.executeSql('DROP TABLE IF EXISTS route', [], this.nullDataHandler, this.errorHandler);
@@ -16,7 +16,7 @@ cta.DataAccess.prototype.populateDBRoutes = function () {
 			}, 
 			this.errorHandler);
 	
-		this.isPopulated = true;
+		//this.isPopulated = true;
 		
 	} catch(e) {
         console.log(e.message);
