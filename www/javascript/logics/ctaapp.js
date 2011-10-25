@@ -4,7 +4,7 @@ var cta = cta || {};
 /*
  * CTA Bus Stop
  */
-cta.BusStop = function (stpid, stpnm, lat, lon, routes) {
+cta.BusStop = function (stpid, stpnm, lat, lon, routes, stopIds) {
 	this.stpid = stpid;
 	this.stpnm = stpnm;
 	this.lat = lat;
@@ -14,6 +14,10 @@ cta.BusStop = function (stpid, stpnm, lat, lon, routes) {
 	this.routes = new Array();
 	for (i in routes) {
 		this.routes.push(parseInt(routes[i]));
+	}
+	this.stopIds = new Array();
+	for (i in stopIds) {
+		this.stopIds.push(parseInt(stopIds[i]));
 	}
 };
 
@@ -232,7 +236,7 @@ cta.DataAccess.prototype.loadBusStops = function(route, callback){
 				var busStops = [];
 				for(var i=0; i<results.rows.length; i++){
 					var row = results.rows.item(i);
-					newStop = new cta.BusStop(row['stpid'],row['stpnm'],row['lat'],row['lon'],row['routes'].split('|'));
+					newStop = new cta.BusStop(row['stpid'],row['stpnm'],row['lat'],row['lon'],row['routes'].split('|'),row['stopids'].split('|'));
 					if ($.inArray(route, newStop.routes) != -1) {
 					   busStops.push(newStop);
 					}
