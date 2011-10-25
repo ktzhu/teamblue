@@ -54,12 +54,15 @@ cta.DOM.prototype.renderBusStops = function(busStops){
 };
 
 cta.DOM.prototype.renderBusStopListItem = function(busStop){
-	var html = '<li data-theme="c" class="ui-btn ui-li ui-btn-up-c"><div class="ui-btn-inner ui-li"><div class="ui-btn-text">';
-	html = html + '<a onClick="initStopView(\'' + busStop.stpnm + '\');" href="#stopView" class="ui-link-inherit">';
-	html = html + busStop.stpnm;
-	html = html + ' (' + busStop.routes.join(', ') + ')';
-	html = html + " &nbsp&nbsp; " + Math.round(busStop.distance*100)/100 + " mi";
-	html = html +'</a></div></div></li>';
+	var html = '<li data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-down-c ui-btn-up-c">';
+	html += '<div class="ui-btn-inner ui-li" aria-hidden="true">';
+	html += '<div class="ui-btn-text">';
+	html += '<a onClick="initStopView(\'' + busStop.stpnm + '\');" href="#stopView" class="ui-link-inherit">';
+	html += '<h3 class="ui-li-heading">' + busStop.stpnm + '</h3>';
+	html += '<p class="ui-li-desc">' + Math.round(busStop.distance * 100) / 100 + ' mi</p>';
+	html += '</a></div>';
+	html += '<span class="ui-icon ui-icon-arrow-r ui-icon-shadow"></span>';
+	html += '</div></li>';
 	return html;
 };
 

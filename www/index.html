@@ -54,6 +54,9 @@
 				console.log(ctaDataAccess.ctadb);
 				ctaDataAccess.loadBusStops(onBusStopsReady);
 				*/
+				
+				loadRoutes();
+				
 				document.addEventListener("deviceready",onDeviceReady,false);
 			};
 			
@@ -72,7 +75,7 @@
 							
 				//loadStops();
 				
-				loadRoutes();
+				
 			};
 			
 			function loadRoutes() {
@@ -86,7 +89,7 @@
 			}
 			
 			function loadStops(routeName, routeNum) {
-				$('#routeName').html(routeName);
+				$('#routeName').html(routeNum + ' ' + routeName);
 				var ctaDataAccess = new cta.DataAccess();
 				console.log(ctaDataAccess.ctadb);
 				ctaDataAccess.loadBusStops(routeNum, onBusStopsReady);
@@ -136,14 +139,13 @@
 	  </div>
       
       <div data-role="page" id="routeView">
-          <div data-role="header">
-              <a href="#home" data-icon="home" data-iconos="notext" data-direction="reverse" class="ui-btn-right jqm-home ui-btn ui-btn-icon-notext ui-btn-corner-all ui-shadow ui-btn-down-f ui-btn-up-f" title="Home">
+          <div data-role="header">            
+			    <a href="#home" data-icon="home" data-iconos="notext" data-direction="reverse" class="ui-btn-right jqm-home ui-btn ui-btn-icon-notext ui-btn-corner-all ui-shadow ui-btn-down-f ui-btn-up-f" title="Home">
                   <span class="ui-btn-inner ui-btn-corner-all">
-                      <span class="ui-btn-text">Home</span>
                       <span class="ui-icon ui-icon-home ui-icon-shadow"></span>
                   </span>
               </a>
-			<h1 id="routeName">Route Name</h1>
+			<h1 id="routeName"></h1>
           </div>
           
           <div data-role="content" class="ui-content" role="main">
@@ -153,6 +155,11 @@
 	  
 		<div data-role="page" id="stopView">
 			<div data-role="header">
+				<a href="#routeView" data-icon="home" data-iconos="notext" data-direction="reverse" class="ui-btn-left ui-btn ui-btn-icon-notext ui-btn-corner-all ui-shadow ui-btn-down-f ui-btn-up-f" title="Back">
+					<span class="ui-btn-inner ui-btn-corner-all">
+						<span class="ui-icon ui-icon-arrow-l ui-icon-shadow"></span>
+					</span>
+				</a>
 				<a href="#home" data-icon="home" data-iconos="notext" data-direction="reverse" class="ui-btn-right jqm-home ui-btn ui-btn-icon-notext ui-btn-corner-all ui-shadow ui-btn-down-f ui-btn-up-f" title="Home">
 					<span class="ui-btn-inner ui-btn-corner-all">
 						<span class="ui-btn-text">Home</span>
