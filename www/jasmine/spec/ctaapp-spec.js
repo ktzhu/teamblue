@@ -17,12 +17,13 @@ describe("CTA Tests", function() {
 		});
              
              it("should be able to load bus stops data for a route", function() {
-                ctaDataAccess.loadBusStops("76");
+				// The #76 Diversey bus has 80 stops
+                ctaDataAccess.loadBusStops(76);
                 waitsFor(function() {
                          return ctaDataAccess.dbTransactionComplete();
                          }, "loadBusStops never completed", 10000);
                 runs(function () {
-                     expect(ctaDataAccess.transactionResults.length).toEqual(144);
+                     expect(ctaDataAccess.transactionResults.length).toEqual(80);
                      });
                 
                 });

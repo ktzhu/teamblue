@@ -11,7 +11,10 @@ cta.BusStop = function (stpid, stpnm, lat, lon, routes) {
 	this.lon = lon;
 	this.distance = 0;
 	this.predictTime = 0;
-	this.routes = routes;
+	this.routes = new Array();
+	for (i in routes) {
+		this.routes.push(parseInt(routes[i]));
+	}
 };
 
 cta.Route = function(id, name) {
@@ -223,15 +226,15 @@ cta.DataAccess.prototype.loadBusStops = function(route, callback){
 		function(transaction){
 			//console.log('exec');
 			//transaction.executeSql('SELECT * FROM busstop',[],this.busStopDataHandler,this.errorHandler);
-			transaction.executeSql('SELECT * FROM busstop WHERE routes='+route+';',[],
+			transaction.executeSql('SELECT * FROM busstop;',[],
 			function(transaction, results){
 				//console.log('get data');
 				var busStops = [];
 				for(var i=0; i<results.rows.length; i++){
 					var row = results.rows.item(i);
 					newStop = new cta.BusStop(row['stpid'],row['stpnm'],row['lat'],row['lon'],row['routes'].split('|'));
-					if (route == newStop.routes || $.inArray(route, newStop.routes) == 0) {
-						busStops[i] = newStop;
+					if ($.inArray(route, newStop.routes) != -1) {
+					   busStops.push(newStop);
 					}
                 }
                                    console.log(busStops);
