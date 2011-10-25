@@ -16,13 +16,23 @@ describe("CTA Tests", function() {
 			//console.log(ctaDataAccess.ctadb);
 		});
              
-             it("should be able to load bus stops data", function() {
+             it("should be able to load bus stops data for a route", function() {
                 ctaDataAccess.loadBusStops("76");
                 waitsFor(function() {
                          return ctaDataAccess.dbTransactionComplete();
                          }, "loadBusStops never completed", 10000);
                 runs(function () {
-                     expect(ctaDataAccess.transactionResults.length).not.toEqual(0);
+                     expect(ctaDataAccess.transactionResults.length).toEqual(144);
+                     });
+                
+                });
+             it("should not get any bus stops when given non-exist route", function() {
+                ctaDataAccess.loadBusStops("hell666");
+                waitsFor(function() {
+                         return ctaDataAccess.dbTransactionComplete();
+                         }, "loadBusStops never completed", 10000);
+                runs(function () {
+                     expect(ctaDataAccess.transactionResults.length).toEqual(0);
                      });
                 
                 });

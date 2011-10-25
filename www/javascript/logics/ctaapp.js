@@ -223,7 +223,7 @@ cta.DataAccess.prototype.loadBusStops = function(route, callback){
 		function(transaction){
 			//console.log('exec');
 			//transaction.executeSql('SELECT * FROM busstop',[],this.busStopDataHandler,this.errorHandler);
-			transaction.executeSql('SELECT * FROM busstop;',[],
+			transaction.executeSql('SELECT * FROM busstop WHERE routes='+route+';',[],
 			function(transaction, results){
 				//console.log('get data');
 				var busStops = [];
@@ -234,9 +234,12 @@ cta.DataAccess.prototype.loadBusStops = function(route, callback){
 						busStops[i] = newStop;
 					}
                 }
+                                   console.log(busStops);
                 callback(busStops, self);
             },
-			this.errorHandler);
+            function (error) {
+                callback([], self);
+            });
 		}, this.errorHandler);
 };
 
