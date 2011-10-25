@@ -35,7 +35,12 @@ describe("CTA Tests", function() {
          	beforeEach(function() {
                     ctaUtil = new cta.Utilities();
                     });
-                    
+				
+				  it("should get buses for this stop or empty array", function() {
+						buses = ctaUtil.getPredictions([11046,11027]);
+						expect(buses.length).not.toEqual(null);
+					 });
+				  
                   it("should get the closest bus stop", function() {
                   	 var stops = [
                   	 	new cta.BusStop("1", "One", 2, 1),

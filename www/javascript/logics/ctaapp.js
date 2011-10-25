@@ -29,6 +29,13 @@ cta.Route = function(id, name) {
 	}
 };
 
+cta.Bus = function (tmstmp, prdtm, rt, rtdir) {
+	this.tmstmp = tmstmp;
+	this.prdtm = prdtm;
+	this.rt = rt;
+	this.rtdir = rtdir;
+};
+
 /*
  * CTA DOM
  * contains all functions for rendering html interface from data
@@ -104,6 +111,29 @@ cta.Utilities.prototype.dFindClosestBusStops = function (lat, lon, busStops, num
 	}
   	
 };
+
+cta.Utilities.prototype.getPredictions = function (stopIds) {
+	
+	url = 'http://www.ctabustracker.com/bustime/api/v1/getpredictions?key=XGSGa2wZ2ybnqmjXPJ55AA4DX&stpid=' + stopIds.join(',');
+	
+	xmlhttp=new XMLHttpRequest();
+	xmlhttp.open("GET", url, false);
+	xmlhttp.send();
+	xmlDoc = xmlhttp.responseXML;
+	
+	var prdElements = xmlDoc.getElementsByTagName('prd');
+	var tmstmpElements = xmlDoc.getElementsByTagName('tmstmp');
+	var prdtmElements = xmlDoc.getElementsByTagName('prdtm');
+	var rtdirElements = xmlDoc.getElementsByTagName('rtdir');
+	var rtElements = xmlDoc.getElementsByTagName('rt');
+	
+	var buses = new Array();
+	for (var i = 0; i < prdElements.length; i++) {
+		buses.push(new cta.Bus(tmstmpElements[i].childNodes[0].nodeValue, prdtmElements[i].childNodes[0].nodeValue, rtdirElements[i].childNodes[0].nodeValue, rtElements[i].childNodes[0].nodeValue));
+	}
+	
+	return buses;
+}
 
 /*
 cta.Utilities.prototype.compareBusStops = function (b1, b2) {
