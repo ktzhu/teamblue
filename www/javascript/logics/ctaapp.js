@@ -55,7 +55,7 @@ cta.DOM.prototype.renderBusStops = function(busStops){
 
 cta.DOM.prototype.renderBusStopListItem = function(busStop){
 	var html = '<li data-theme="c" class="ui-btn ui-li ui-btn-up-c"><div class="ui-btn-inner ui-li"><div class="ui-btn-text">';
-	html = html + '<a href="#" class="ui-link-inherit">';
+	html = html + '<a onClick="initStopView(\'' + busStop.stpnm + '\');" href="#stopView" class="ui-link-inherit">';
 	html = html + busStop.stpnm;
 	html = html + ' (' + busStop.routes.join(', ') + ')';
 	html = html + " &nbsp&nbsp; " + Math.round(busStop.distance*100)/100 + " mi";
