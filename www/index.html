@@ -28,6 +28,7 @@
           var compassWatchId;
           var selectedStopId;
           var selectedRoute;
+          var routes;
 				// If you want to prevent dragging, uncomment this section
 			/*
 			function preventBehavior(e) 
@@ -72,8 +73,6 @@
 			{
 				// When we commit our code to Git, we must uncomment the following line!
 				window.location = "jasmine/SpecRunner.html";		        
-				//var ctaUtil = new cta.Utilities();
-				//ctaUtil.getPredictions([11046,11027]);
                 loadRoutes();
 			};
 			
@@ -84,9 +83,11 @@
 			
 			function displayRoutes(routes) {
 				var ctaDOM = new cta.DOM();
+                var ctaUtil = new cta.Utilities();
+                this.routes = routes;
 				$('#routeList').html(ctaDOM.renderRoutes(routes));
-			};
-			
+            };
+			          
 			function loadStops(routeName, routeNum) {
 				$('#routeName').html(routeNum + ' ' + routeName);
                 this.selectedRoute = routeNum;
@@ -149,8 +150,9 @@
 		<div data-role="header">     
 	      <h1>Choose your bus:</h1>
 	    </div>
-        
-        <ul data-role="listview" class="ui-listview" id="routeList">
+          <div data-role="content" class="ui-content" role="main">
+              <ul data-role="listview" class="ui-listview" id="routeList" data-inset="true" data-filter="true">
+          </div>
 		</ul>
         
 	  </div>
@@ -166,7 +168,7 @@
           </div>
           
           <div data-role="content" class="ui-content" role="main">
-              <div class="content-primary" id="busStopList"></div>
+              <div class="content-primary" id="busStopList" ></div>
           </div>
       </div>
 	  
