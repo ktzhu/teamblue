@@ -98,16 +98,10 @@
 			};
           
 			function initStopView(busStopName, busStopIds) {
-                console.log('initStopView function');
-                console.log(this.selectedStopId);
-                console.log(busStopName);
-                console.log(busStopIds);
 				$('#stopName').html(busStopName);
                 
                 var ctaUtil = new cta.Utilities();
                 var buses = ctaUtil.getPredictions(busStopIds,selectedRoute);
-                console.log('Here are the returned buses from the CTA');
-                console.log(buses);
                 
                 var ctaDOM = new cta.DOM();
                 $('#busArrivalTimes').html(ctaDOM.renderBusTimes(buses));
