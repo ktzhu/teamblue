@@ -43,6 +43,8 @@
 	<true/>
 	<key>NSMainNibFile</key>
 	<string></string>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleOpaqueBlack</string>
 	<key>NSMainNibFile~ipad</key>
 	<string></string>
 </dict>
