@@ -80,12 +80,45 @@ cta.DOM.prototype.renderBusStopListItem = function(busStop){
 	return html;
 };
 
+cta.DOM.prototype.renderHeading = function (heading) {
+  	if(heading){
+  		var h = heading;
+  		var t = 'You are heading toward ';
+  		if(h > 22.5 && h <= 67.5){
+  			return t + 'north east';
+  		}
+  		else if(h > 67.5 && h <= 112.5){
+  			return t + 'east';
+  		}
+  		else if(h > 112.5 && h <= 157.5){
+  			return t + 'south east';
+  		}
+  		else if(h > 157.5 && h <= 202.5){
+  			return t + 'south';
+  		}
+  		else if(h > 202.5 && h <= 247.5){
+  			return t + 'south west';
+  		}
+  		else if(h > 247.5 && h <= 292.5){
+  			return t + 'west';
+  		}
+  		else if(h > 292.5 && h <= 337.5){
+  			return t + 'north west';
+  		}
+  		else {
+  			return t + 'north';
+  		}
+  	}
+  	else {
+  		return 'Compass is not available';
+  	}
+}
+
 /*
  * CTA Utilities Function
  * contains all of the function that is not belong to any other specific object
  */
 cta.Utilities = function () {};
-
 
 cta.Utilities.prototype.dFindClosestBusStops = function (lat, lon, busStops, num) {
 	//console.log('calculate distance');

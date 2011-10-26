@@ -1,5 +1,5 @@
-/*The purpose of this file is solely for testing the PhoneGap API
- *It may or may not related to the project.
+/*
+ *
  */
 
 PGAPI = function() { };
@@ -21,20 +21,40 @@ PGAPI.prototype.checkConnection = function() {
  
 PGAPI.prototype.getGeoLocation = function (callback) {
 	this.asyncResult = null;
-	var pos;
 	var self = this;
 	callback = callback || this.defaultCallback;
     navigator.geolocation.getCurrentPosition(
     	function (position){
-    		//console.log(position);
-     		pos = position;
-     		self.isLocationServiceAvailable = false;
-     		callback(pos, self);
+     		self.isLocationServiceAvailable = true;
+     		callback(position, self);
         },
         function (error){
+        	self.isLocationServiceAvailable = false;
         	callback(false, self);
         }, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true});
 };
+
+PGAPI.prototype.watchCompassHeading = function (callback) {
+	this.asyncResult = null;
+	callback = callback || this.defaultCallback;
+	var heading;
+	var self = this;
+	var options = { frequency: 1000 };  // Update every 3 seconds
+	if(typeof navigator.compass === 'undefined' || navigator.platform == 'iPhone Simulator') {
+		callback(false, self);
+	}
+	return navigator.compass.watchHeading(
+		function (heading) {
+			self.isCompassAvailable = true;
+			callback(heading, self);
+		}, 
+		function () {
+			self.isCompassAvailable = false;
+			callback(false, self);
+		}, 
+		options);
+};
+
 
 PGAPI.prototype.defaultCallback = function(result, self){
 	if (typeof result === 'undefined'){
@@ -46,6 +66,7 @@ PGAPI.prototype.defaultCallback = function(result, self){
         }
     }
     else {
+    	
         self.asyncResult = result;
         return true;  
     }

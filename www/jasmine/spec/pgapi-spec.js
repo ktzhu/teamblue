@@ -1,6 +1,7 @@
 describe("PhoneGap API Tests", function() {
          
          var pgAPI;
+         var watchId;
          
          beforeEach(function() {
                     pgAPI= new PGAPI();
@@ -22,12 +23,27 @@ describe("PhoneGap API Tests", function() {
                      });
                   }
                   
-                  it("Should be able to get coordinate", function () {
+                  it("Should be able to get coordinate, if not available it should return false", function () {
                      pgAPI.getGeoLocation();
       				  waitsFor(function() {
                          return pgAPI.defaultCallback();
                          }, "get location never completed", 10000);
-                     runs(function () {expect(pgAPI.asyncResult).not.toEqual(null)});
+                     runs(function () {
+                     	expect(pgAPI.asyncResult).toBeDefined();
+                     	expect(pgAPI.asyncResult).not.toEqual(null);
+                     });
+                  });
+                  
+                  it("Should be able to get compass, if not available it should return false", function () {
+                  	 watchId = pgAPI.watchCompassHeading();
+                  	 waitsFor(function() {
+                         return pgAPI.defaultCallback();
+                         }, "watch compass never completed", 10000);
+                     runs(function () {
+                     	expect(pgAPI.asyncResult).toBeDefined();
+                     	expect(pgAPI.asyncResult).not.toEqual(null);
+                     	navigator.compass.clearWatch(watchId);
+                     });
                   });
                   
                 });

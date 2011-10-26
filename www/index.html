@@ -25,6 +25,7 @@
 		
 	  <script type="text/javascript" charset="utf-8">
           var stops;
+          var compassWatchId;
 				// If you want to prevent dragging, uncomment this section
 			/*
 			function preventBehavior(e) 
@@ -87,7 +88,7 @@
 			function loadStops(routeName, routeNum) {
 				$('#routeName').html(routeNum + ' ' + routeName);
 				var ctaDataAccess = new cta.DataAccess();
-				console.log(ctaDataAccess.ctadb);
+				//console.log(ctaDataAccess.ctadb);
 				ctaDataAccess.loadBusStops(routeNum, onBusStopsReady);
 				ctaDataAccess.loadRoutes(onRoutesReady);
 				return false;
@@ -95,7 +96,14 @@
 			
 			function initStopView(stopName) {
 				$('#stopName').html(stopName);
+				var pgAPI = new PGAPI();
+				compassWatchId = pgAPI.watchCompassHeading(onCompassUpdate);
 				return false;
+			};
+			
+			function onCompassUpdate(heading) {
+				var ctaDOM = new cta.DOM();
+				$('#headingDirection').html(ctaDOM.renderHeading(heading));
 			};
 			
 			function onBusStopsReady(busStops)
@@ -106,7 +114,7 @@
 			};
 			
 			function displayBusStops(pos){
-                console.log(stops);
+                //console.log(stops);
 				var ctaUtil = new cta.Utilities();
 				var ctaDOM = new cta.DOM();
 				var closeStops;
@@ -164,6 +172,7 @@
 				</a>
 				<h1 id="stopName"></h1>
 			</div>
+			<span id="headingDirection">Detecting your direction...</span>
 			<ul data-role="listview" class="ui-listview">
 				<li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-btn ui-bar-b ui-btn-down-undefined ui-btn-up-undefined">Westbound</li>
 				<li class="ui-li ui-li-static ui-body-c">
