@@ -96,15 +96,22 @@
 				ctaDataAccess.loadRoutes(onRoutesReady);
 				return false;
 			};
-			
-			function initStopView(busStopName, busStopId) {
-                console.log('nor');
-                this.selectedStopId = busStopId;
+          
+			function initStopView(busStopName, busStopIds) {
+                console.log('initStopView function');
+                console.log(this.selectedStopId);
+                console.log(busStopName);
+                console.log(busStopIds);
 				$('#stopName').html(busStopName);
+                
                 var ctaUtil = new cta.Utilities();
-                var buses = ctaUtil.getPredictions(selectedStopId,selectedRoute);
-                console.log('here');
+                var buses = ctaUtil.getPredictions(busStopIds,selectedRoute);
+                console.log('Here are the returned buses from the CTA');
                 console.log(buses);
+                
+                var ctaDOM = new cta.DOM();
+                $('#busArrivalTimes').html(ctaDOM.renderBusTimes(buses));
+                
                 //render buses
 				var pgAPI = new PGAPI();
 				compassWatchId = pgAPI.watchCompassHeading(onCompassUpdate);
@@ -180,23 +187,21 @@
 						<span class="ui-icon ui-icon-home ui-icon-shadow"></span>
 					</span>
 				</a>
+                
 				<h1 id="stopName"></h1>
 			</div>
 			<span id="headingDirection">Detecting your direction...</span>
-			<ul data-role="listview" class="ui-listview">
-				<li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-btn ui-bar-b ui-btn-down-undefined ui-btn-up-undefined">Westbound</li>
+			<ul data-role="listview" class="ui-listview" id="busArrivalTimes">
+				<li data-role="list-divider" id="firstDirection" role="heading" class="ui-li ui-li-divider ui-btn ui-bar-b ui-btn-down-undefined ui-btn-up-undefined"></li>
 				<li class="ui-li ui-li-static ui-body-c">
-					<h3 class="ui-li-heading">76 Diversey</h3>
-					<span class="ui-li-count ui-btn-up-c ui-btn-corner-all">5 min</span>
+					<h3 id="firstDirectionTimes"></h3>
 				</li>
 				<li class="ui-li ui-li-static ui-body-c">
-					<h3 class="ui-li-heading">22 Clark</h3>
-					<span class="ui-li-count ui-btn-up-c ui-btn-corner-all">12 min</span>
+					
 				</li>
-				<li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-btn ui-bar-b ui-btn-down-undefined ui-btn-up-undefined">Eastbound</li>
+				<li data-role="list-divider" id="secondDirection" role="heading" class="ui-li ui-li-divider ui-btn ui-bar-b ui-btn-down-undefined ui-btn-up-undefined"></li>
 				<li class="ui-li ui-li-static ui-body-c">
-					<h3 class="ui-li-heading">22 Clark</h3>
-					<span class="ui-li-count ui-btn-up-c ui-btn-corner-all">2 min</span>
+					<h3 id="secondDirectionTimes"></h3>
 				</li>
 			</ul>
 		</div>

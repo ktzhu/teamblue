@@ -71,11 +71,33 @@ cta.DOM.prototype.renderBusStopListItem = function(busStop){
 	var html = '<li data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-down-c ui-btn-up-c">';
 	html += '<div class="ui-btn-inner ui-li" aria-hidden="true">';
 	html += '<div class="ui-btn-text">';
-	html += '<a onClick="initStopView(\'' + busStop.stpnm + '\',\'' + busStop.stpid + '\');" href="#stopView" class="ui-link-inherit">';
+	html += '<a onClick="initStopView(\'' + busStop.stpnm + '\',\'' + busStop.stopIds + '\');" href="#stopView" class="ui-link-inherit">';
 	html += '<h3 class="ui-li-heading">' + busStop.stpnm + '</h3>';
 	html += '<p class="ui-li-desc">' + Math.round(busStop.distance * 100) / 100 + ' mi</p>';
 	html += '</a></div>';
 	html += '<span class="ui-icon ui-icon-arrow-r ui-icon-shadow"></span>';
+	html += '</div></li>';
+	return html;
+};
+
+cta.DOM.prototype.renderBusTimes = function(buses){
+	console.log('renderbustimes function');
+	console.log(buses);
+	var html = '<ul data-role="listview" class="ui-listview">';
+	for(var i=0; i<buses.length; i++){
+		html+= this.renderBusStopArrivalListItem(buses[i]);
+	}
+	html = html + '</ui>';
+	return html;
+};
+
+cta.DOM.prototype.renderBusStopArrivalListItem = function(bus){
+	var html = '<li data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-down-c ui-btn-up-c">';
+	html += '<li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-btn ui-bar-b ui-btn-down-undefined ui-btn-up-undefined">' + bus.rt + '</li>';
+	html += '<div class="ui-btn-inner ui-li" aria-hidden="true">';
+	html += '<div class="ui-btn-text">';
+	html += '<h3 class="ui-li-heading">' + bus.prdtm.split(" ", 2)[1] + '</h3>';
+	html += '</div>';
 	html += '</div></li>';
 	return html;
 };
