@@ -36,11 +36,14 @@ cta.Route = function(id, name) {
 	}
 };
 
-cta.Bus = function (tmstmp, prdtm, rt, rtdir) {
+cta.Bus = function (tmstmp, prdtm, rtdir, rt) {
 	this.tmstmp = tmstmp;
 	this.prdtm = prdtm;
 	this.rt = rt;
 	this.rtdir = rtdir;
+	ctaUtil = new cta.Utilities();
+	this.prdtmdelta = ctaUtil.parseMinutes(this.prdtm.split(' ')[1]) - ctaUtil.parseMinutes(this.tmstmp.split(' ')[1]);
+	
 };
 
 /*
@@ -92,13 +95,11 @@ cta.DOM.prototype.renderBusTimes = function(buses){
 };
 
 cta.DOM.prototype.renderBusStopArrivalListItem = function(bus){
-	var html = '<li data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-down-c ui-btn-up-c">';
-	html += '<li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-btn ui-bar-b ui-btn-down-undefined ui-btn-up-undefined">' + bus.rt + '</li>';
-	html += '<div class="ui-btn-inner ui-li" aria-hidden="true">';
-	html += '<div class="ui-btn-text">';
-	html += '<h3 class="ui-li-heading">' + bus.prdtm.split(" ", 2)[1] + '</h3>';
-	html += '</div>';
-	html += '</div></li>';
+
+	var html = '<li class="ui-li ui-li-static">' + bus.prdtmdelta + ' min ';
+	html += '<p class="ui-li-aside ui-li-desc">' + bus.rtdir + '</p>';
+	html += '</li>';
+	
 	return html;
 };
 
@@ -194,9 +195,16 @@ cta.Utilities.prototype.getPredictions = function (stopIds, routes) {
 	for (var i = 0; i < prdElements.length; i++) {
 		buses.push(new cta.Bus(tmstmpElements[i].childNodes[0].nodeValue, prdtmElements[i].childNodes[0].nodeValue, rtdirElements[i].childNodes[0].nodeValue, rtElements[i].childNodes[0].nodeValue));
 	}
-    console.log('done');
 	
 	return buses;
+}
+
+/*
+ Takes a string in the format of "dd:dd" and converts to minutes.
+*/
+cta.Utilities.prototype.parseMinutes = function (timeStr) {
+	var values = timeStr.split(':');
+	return parseInt(values[0]) * 60 + parseInt(values[1]);
 }
 
 /*

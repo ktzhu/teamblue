@@ -47,6 +47,14 @@ describe("CTA Tests", function() {
                     ctaUtil = new cta.Utilities();
                     });
 				
+				  it("should parse minutes from time string", function() {
+					 expect(ctaUtil.parseMinutes('13:34')).toEqual(814);
+					 expect(ctaUtil.parseMinutes('00:00')).toEqual(0);
+					 expect(ctaUtil.parseMinutes('01:01')).toEqual(61);
+					 expect(ctaUtil.parseMinutes('05:00')).toEqual(300);
+					 expect(ctaUtil.parseMinutes('00:21')).toEqual(21);
+					 });
+				  
 				  it("should get buses for this stop or empty array", function() {
 						buses = ctaUtil.getPredictions([11046,11027]);
 						expect(buses.length).not.toEqual(null);
