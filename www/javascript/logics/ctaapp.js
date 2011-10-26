@@ -84,13 +84,10 @@ cta.DOM.prototype.renderBusStopListItem = function(busStop){
 };
 
 cta.DOM.prototype.renderBusTimes = function(buses){
-	console.log('renderbustimes function');
-	console.log(buses);
-	var html = '<ul data-role="listview" class="ui-listview">';
-	for(var i=0; i<buses.length; i++){
-		html+= this.renderBusStopArrivalListItem(buses[i]);
+	var html = '';
+	for (var i = 0; i < buses.length; i++) {
+		html += this.renderBusStopArrivalListItem(buses[i]);
 	}
-	html = html + '</ui>';
 	return html;
 };
 
