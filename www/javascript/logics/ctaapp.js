@@ -152,7 +152,7 @@ cta.Utilities.prototype.dFindClosestBusStops = function (lat, lon, busStops, num
   	
 };
 
-cta.Utilities.prototype.getPredictions = function (stopIds) {
+cta.Utilities.prototype.getPredictions = function (stopIds, route) {
 	
 	url = 'http://www.ctabustracker.com/bustime/api/v1/getpredictions?key=XGSGa2wZ2ybnqmjXPJ55AA4DX&stpid=' + stopIds.join(',');
 	
