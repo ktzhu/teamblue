@@ -26,6 +26,8 @@
 	  <script type="text/javascript" charset="utf-8">
           var stops;
           var compassWatchId;
+          var selectedStopId;
+          var selectedRoute;
 				// If you want to prevent dragging, uncomment this section
 			/*
 			function preventBehavior(e) 
@@ -69,7 +71,7 @@
 			function onDeviceReady()
 			{
 				// When we commit our code to Git, we must uncomment the following line!
-                window.location = "jasmine/SpecRunner.html";		        
+                //window.location = "jasmine/SpecRunner.html";		        
 				//var ctaUtil = new cta.Utilities();
 				//ctaUtil.getPredictions([11046,11027]);
                 loadRoutes();
@@ -87,6 +89,7 @@
 			
 			function loadStops(routeName, routeNum) {
 				$('#routeName').html(routeNum + ' ' + routeName);
+                this.selectedRoute = routeNum;
 				var ctaDataAccess = new cta.DataAccess();
 				//console.log(ctaDataAccess.ctadb);
 				ctaDataAccess.loadBusStops(routeNum, onBusStopsReady);
@@ -94,8 +97,15 @@
 				return false;
 			};
 			
-			function initStopView(stopName) {
-				$('#stopName').html(stopName);
+			function initStopView(busStopName, busStopId) {
+                console.log('nor');
+                this.selectedStopId = busStopId;
+				$('#stopName').html(busStopName);
+                var ctaUtil = new cta.Utilities();
+                var buses = ctaUtil.getPredictions(selectedStopId,selectedRoute);
+                console.log('here');
+                console.log(buses);
+                //render buses
 				var pgAPI = new PGAPI();
 				compassWatchId = pgAPI.watchCompassHeading(onCompassUpdate);
 				return false;

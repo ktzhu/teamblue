@@ -71,7 +71,7 @@ cta.DOM.prototype.renderBusStopListItem = function(busStop){
 	var html = '<li data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-down-c ui-btn-up-c">';
 	html += '<div class="ui-btn-inner ui-li" aria-hidden="true">';
 	html += '<div class="ui-btn-text">';
-	html += '<a onClick="initStopView(\'' + busStop.stpnm + '\');" href="#stopView" class="ui-link-inherit">';
+	html += '<a onClick="initStopView(\'' + busStop.stpnm + '\',\'' + busStop.stpid + '\');" href="#stopView" class="ui-link-inherit">';
 	html += '<h3 class="ui-li-heading">' + busStop.stpnm + '</h3>';
 	html += '<p class="ui-li-desc">' + Math.round(busStop.distance * 100) / 100 + ' mi</p>';
 	html += '</a></div>';
@@ -152,10 +152,11 @@ cta.Utilities.prototype.dFindClosestBusStops = function (lat, lon, busStops, num
   	
 };
 
-cta.Utilities.prototype.getPredictions = function (stopIds, route) {
+cta.Utilities.prototype.getPredictions = function (stopIds, routes) {
 	
-	url = 'http://www.ctabustracker.com/bustime/api/v1/getpredictions?key=XGSGa2wZ2ybnqmjXPJ55AA4DX&stpid=' + stopIds.join(',');
-	
+	//url = 'http://www.ctabustracker.com/bustime/api/v1/getpredictions?key=XGSGa2wZ2ybnqmjXPJ55AA4DX&rt='+ route.join(',') +'&stpid=' + stopIds.join(',');
+    url = 'http://www.ctabustracker.com/bustime/api/v1/getpredictions?key=XGSGa2wZ2ybnqmjXPJ55AA4DX&rt='+ routes +'&stpid=' + stopIds;
+	console.log(url);
 	xmlhttp=new XMLHttpRequest();
 	xmlhttp.open("GET", url, false);
 	xmlhttp.send();
@@ -171,6 +172,7 @@ cta.Utilities.prototype.getPredictions = function (stopIds, route) {
 	for (var i = 0; i < prdElements.length; i++) {
 		buses.push(new cta.Bus(tmstmpElements[i].childNodes[0].nodeValue, prdtmElements[i].childNodes[0].nodeValue, rtdirElements[i].childNodes[0].nodeValue, rtElements[i].childNodes[0].nodeValue));
 	}
+    console.log('done');
 	
 	return buses;
 }
