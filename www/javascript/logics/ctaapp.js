@@ -225,6 +225,7 @@ cta.DataAccess.prototype.loadRoutes = function(callback) {
 
 cta.DataAccess.prototype.loadBusStops = function(route, callback){
     callback = callback || this.dbTransactionComplete;
+    this.transactionResults = null;
     var self = this;
 	this.ctadb.transaction(
 		function(transaction){
@@ -241,7 +242,7 @@ cta.DataAccess.prototype.loadBusStops = function(route, callback){
 					   busStops.push(newStop);
 					}
                 }
-                                   console.log(busStops);
+                                   //console.log(busStops);
                 callback(busStops, self);
             },
             function (error) {
@@ -255,7 +256,7 @@ cta.DataAccess.prototype.dbTransactionComplete = function (trResults, self) {
     //console.log(trResults);
     
     if (typeof trResults === 'undefined'){
-        if(typeof this.transactionResults === 'undefined'){
+        if(typeof this.transactionResults === 'undefined' || this.transactionResults == null){
             return false;
         }
         else {

@@ -16,14 +16,15 @@
 		<script type="text/javascript" charset="utf-8" src="javascript/phonegap-1.0.0.js"></script>
 		<script type="text/javascript" charset="utf-8" src="javascript/logics/ctaapp.js"></script>
 		<script type="text/javascript" charset="utf-8" src="javascript/logics/geo.js"></script>
+		<script type="text/javascript" charset="utf-8" src="javascript/logics/populateRoutes.js"></script>
 		<script type="text/javascript" charset="utf-8" src="javascript/logics/populateStops.js"></script>
+		<script type="text/javascript" charset="utf-8" src="javascript/logics/pgapi.js"></script>
 		
 		<script type="text/javascript" charset="utf-8" src="javascript/jquery/jquery-1.6.4.js"></script>
 		<script type="text/javascript" charset="utf-8" src="javascript/jquery/jquery.mobile-1.0rc1.js"></script>
 		
 	  <script type="text/javascript" charset="utf-8">
-          var lon;
-          var lat;
+          var stops;
 				// If you want to prevent dragging, uncomment this section
 			/*
 			function preventBehavior(e) 
@@ -55,7 +56,7 @@
 				ctaDataAccess.loadBusStops(onBusStopsReady);
 				*/
 				
-				loadRoutes();
+				
 				
 				document.addEventListener("deviceready",onDeviceReady,false);
 			};
@@ -67,27 +68,21 @@
 			function onDeviceReady()
 			{
 				// When we commit our code to Git, we must uncomment the following line!
-                window.location = "jasmine/SpecRunner.html";
-				
-		        // do your thing!
-				//navigator.notification.alert("PhoneGap "+ device.phonegap +" is working on "+ device.name)
-				//navigator.geolocation.getCurrentPosition(onPositionSuccess, onError);
-							
-				//loadStops();
-				
+                //window.location = "jasmine/SpecRunner.html";		        
 				//var ctaUtil = new cta.Utilities();
 				//ctaUtil.getPredictions([11046,11027]);
+                loadRoutes();
 			};
 			
 			function loadRoutes() {
 				var ctaDataAccess = new cta.DataAccess();
 				ctaDataAccess.loadRoutes(displayRoutes);
-			}
+			};
 			
 			function displayRoutes(routes) {
 				var ctaDOM = new cta.DOM();
 				$('#routeList').html(ctaDOM.renderRoutes(routes));
-			}
+			};
 			
 			function loadStops(routeName, routeNum) {
 				$('#routeName').html(routeNum + ' ' + routeName);
@@ -96,33 +91,33 @@
 				ctaDataAccess.loadBusStops(routeNum, onBusStopsReady);
 				ctaDataAccess.loadRoutes(onRoutesReady);
 				return false;
-			}
+			};
 			
 			function initStopView(stopName) {
 				$('#stopName').html(stopName);
 				return false;
-			}
+			};
 			
 			function onBusStopsReady(busStops)
 			{
-				//console.log('Ready:'+busStops);
-				var ctaUtil = new cta.Utilities();
-				var ctaDOM = new cta.DOM();	
-                console.log(this.lat + " " + this.lon);
-				var closeStops = ctaUtil.dFindClosestBusStops(41.93263, -87.656629, busStops, 5);
-				//console.log('Done:'+closeStops);
-				document.getElementById('busStopList').innerHTML = 	ctaDOM.renderBusStops(closeStops);
-				//console.log(document.getElementById('busStopList').innerHTML);
-				//return false;	
+				var pgAPI = new PGAPI();
+                this.stops = busStops;
+				pgAPI.getGeoLocation(displayBusStops);
 			};
-
-// onError Callback receives a PositionError object
-//
-			function onError(error) {
-    			alert('code: '    + error.code    + '\n' +
-          			  'message: ' + error.message + '\n');
-				};
-
+			
+			function displayBusStops(pos){
+                console.log(stops);
+				var ctaUtil = new cta.Utilities();
+				var ctaDOM = new cta.DOM();
+				var closeStops;
+				if(pos){
+					closeStops = ctaUtil.dFindClosestBusStops(pos.coords.latitude, pos.coords.longitude, stops, 5);					
+				}
+				else {
+					closeStops = ctaUtil.dFindClosestBusStops(41.93263, -87.656629, stops, 5);
+				}	
+				document.getElementById('busStopList').innerHTML = 	ctaDOM.renderBusStops(closeStops);
+			};
 
 	    </script>
   </head>

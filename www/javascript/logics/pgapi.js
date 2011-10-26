@@ -18,3 +18,35 @@ PGAPI.prototype.checkConnection = function() {
     
     return states[networkState];
 };
+ 
+PGAPI.prototype.getGeoLocation = function (callback) {
+	this.asyncResult = null;
+	var pos;
+	var self = this;
+	callback = callback || this.defaultCallback;
+    navigator.geolocation.getCurrentPosition(
+    	function (position){
+    		//console.log(position);
+     		pos = position;
+     		self.isLocationServiceAvailable = false;
+     		callback(pos, self);
+        },
+        function (error){
+        	callback(false, self);
+        }, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true});
+};
+
+PGAPI.prototype.defaultCallback = function(result, self){
+	if (typeof result === 'undefined'){
+        if(typeof this.asyncResult === 'undefined' || this.asyncResult == null){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    else {
+        self.asyncResult = result;
+        return true;  
+    }
+};

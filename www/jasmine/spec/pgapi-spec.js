@@ -22,5 +22,13 @@ describe("PhoneGap API Tests", function() {
                      });
                   }
                   
+                  it("Should be able to get coordinate", function () {
+                     pgAPI.getGeoLocation();
+      				  waitsFor(function() {
+                         return pgAPI.defaultCallback();
+                         }, "get location never completed", 10000);
+                     runs(function () {expect(pgAPI.asyncResult).not.toEqual(null)});
+                  });
+                  
                 });
          });
