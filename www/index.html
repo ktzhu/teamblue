@@ -106,6 +106,7 @@
 				
 				
                 var ctaDOM = new cta.DOM();
+				console.log(ctaDOM.renderBusTimes(buses));
                 $('#busArrivalTimes').html(ctaDOM.renderBusTimes(buses));
                 
                 //render buses
@@ -150,7 +151,7 @@
 	      <h1>Choose your bus:</h1>
 	    </div>
           <div data-role="content" class="ui-content" role="main">
-              <ul data-role="listview" class="ui-listview" id="routeList" data-inset="true" data-filter="true">
+              <ul data-role="listview" class="ui-listview" id="routeList" data-inset="true" data-filter="true"></ul>
           </div>
 		</ul>
         

@@ -53,6 +53,7 @@ describe("CTA Tests", function() {
 					 expect(ctaUtil.parseMinutes('01:01')).toEqual(61);
 					 expect(ctaUtil.parseMinutes('05:00')).toEqual(300);
 					 expect(ctaUtil.parseMinutes('00:21')).toEqual(21);
+					 expect(ctaUtil.parseMinutes('09:43')).toEqual(583);
 					 });
 				  
 				  it("should get buses for this stop or empty array", function() {
