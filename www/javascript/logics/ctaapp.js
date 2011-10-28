@@ -85,27 +85,38 @@ cta.DOM.prototype.renderBusStopListItem = function(busStop){
 cta.DOM.prototype.renderBusTimes = function(buses){
 	console.log('renderbustimes function');
 	console.log(buses);
+	console.log(buses.length);
+
 	var html = '<ul data-role="listview" class="ui-listview">';
 	
-	// Sort buses by direction so we can group them
-	buses.sort(function(a, b) {
-		if (a.rtdir > b.rtdir) {
-			return -1
-		} else if (a.rtdir < b.rtdir) {
-			return 1;
-		}
-		else {
-			return 0;
-		}
-	});
+	// Check for CTA bustime response error
+	if (buses.length == 0) {
+		html += '<li class="ui-li ui-li-static ui-body-c">';
+		html += 'Sorry, there is no service scheduled currently for this stop.';
+		html += '</li>';
+	}
 	
-	dir = null;
-	for (var i = 0; i < buses.length; i++) {		
-		if (dir == null || dir != buses[i].rtdir) {
-			html += '<li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-btn ui-bar-b ui-btn-down-undefined ui-btn-up-undefined">' + buses[i].rtdir + '</li>';
-			dir = buses[i].rtdir;
+	else {
+		// Sort buses by direction so we can group them
+		buses.sort(function(a, b) {
+			if (a.rtdir > b.rtdir) {
+				return -1
+			} else if (a.rtdir < b.rtdir) {
+				return 1;
+			}
+			else {
+				return 0;
+			}
+		});
+	
+		dir = null;
+		for (var i = 0; i < buses.length; i++) {
+			if (dir == null || dir != buses[i].rtdir) {
+				html += '<li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-btn ui-bar-b ui-btn-down-undefined ui-btn-up-undefined">' + buses[i].rtdir + '</li>';
+				dir = buses[i].rtdir;
+			}
+			html += this.renderBusStopArrivalListItem(buses[i]);
 		}
-		html += this.renderBusStopArrivalListItem(buses[i]);
 	}
 	
 	html = html + '</ul>';
